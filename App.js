@@ -2,13 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Product from './Pages/Product';
-import Client from './Pages/Client';
-import Delivery from './Pages/Delivery';
-import Payement from './Pages/Payement';
+
+import Menu from './AppBar/Menu'
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Payement/>
+      <Menu/>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
