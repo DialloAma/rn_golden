@@ -6,11 +6,13 @@ import Product from "../Pages/Product";
 import Client from '../Pages/Client';
 import Delivery from '../Pages/Delivery';
 import Payement from '../Pages/Payement';
+import CltList from "../Lists/CltList";
 
 import { Header } from "react-native/Libraries/NewAppScreen";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 
 const Drawer = createDrawerNavigator();
 const Menu = () => {
@@ -55,6 +57,7 @@ const Menu = () => {
         <Drawer.Screen  name="Client" component={Client} />
         <Drawer.Screen name="Payement" component={Payement} />
         <Drawer.Screen  name="Deliver" component={Delivery} />
+        <Drawer.Screen  name="list" component={CltList} />
         
         
       </Drawer.Navigator>

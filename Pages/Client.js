@@ -9,18 +9,26 @@ import {
   Alert,
   KeyboardAvoidingView,
 } from "react-native";
+import { AddClient } from "../Redux/Actions";
+import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 
 const Client = (props) => {
+    const dispatch =useDispatch();
+    const {client}=useSelector((state)=>state.cltReducer)
+    console.log(client)
   const [fname, setFname] = useState("");
   const [numberph, setNumberph] = useState("");
   const [adress, setAdress] = useState("");
   const [balance, setBalance] = useState('0');
-  const AddClt=(client)=>{
+  const AddClt=()=>{
     if(!fname || !numberph || !adress){
       Alert.alert("please fill up the form") 
       return
     }else{
-   
+      
+       dispatch(AddClient( {fname,numberph,adress,balance}))
+     //  props.add(newclt)
       Alert.alert("client has been added succefuly")
       setAdress("");
     setFname("");
@@ -50,7 +58,7 @@ const Client = (props) => {
             value={fname}
             onChangeText={(fname) => {
               setFname(fname);
-              console.log(fname)
+             
             }}
             style={styles.input}
           />
@@ -122,6 +130,14 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
 });
+/*const mapDispatchToProps={
+ add :AddClient
+}
+const mapStateToProps=(state)=>{
+    console.log(state)
+    return{
+        client: state.cltReducer}
+}
 
-
+export default connect(mapStateToProps,mapDispatchToProps)(Client);*/
 export default Client;
