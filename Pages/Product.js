@@ -16,6 +16,7 @@ const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.prodReducer);
   console.log(product);
+  
   const [pname, setPname] = useState("");
   const [qty, setQty] = useState("");
   const [price, setPrice] = useState("");

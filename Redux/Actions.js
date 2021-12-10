@@ -8,6 +8,7 @@ export const AddClient=(newclt)=>{
 }
 
 export const AddProdt=(newprod)=>{
+    newprod.id=Math.random().toString
     return{
         type:'ADD_PROD',
         payload:newprod
