@@ -1,8 +1,9 @@
 import { combineReducers, createStore } from "redux";
-import { CltReducer } from "./Reducers";
+import { CltReducer, ProdReducer } from "./Reducers";
 
 const Root=combineReducers({
-   cltReducer: CltReducer
+   cltReducer: CltReducer,
+   prodReducer: ProdReducer,
 })
 
 export const store = createStore(Root)

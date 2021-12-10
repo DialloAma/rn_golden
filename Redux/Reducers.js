@@ -8,3 +8,14 @@ export const CltReducer=(state={client:[]},action)=>{
             return state;
     }
 }
+
+export const ProdReducer=(state={product:[]},action)=>{
+    switch(action.type){
+        case 'ADD_PROD':
+            return{
+                ...state, product:[...state.product,action.payload]
+            }
+        default:
+            return state;
+    }
+}

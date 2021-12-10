@@ -6,3 +6,10 @@ export const AddClient=(newclt)=>{
         payload:newclt
     }
 }
+
+export const AddProdt=(newprod)=>{
+    return{
+        type:'ADD_PROD',
+        payload:newprod
+    }
+}

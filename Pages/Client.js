@@ -22,14 +22,18 @@ const Client = (props) => {
   const [adress, setAdress] = useState("");
   const [balance, setBalance] = useState('0');
   const AddClt=()=>{
-    if(!fname || !numberph || !adress){
-      Alert.alert("please fill up the form") 
+    if(!fname){
+      Alert.alert("please fill up the client name field") 
       return
+    }else if(!numberph){
+      Alert.alert("please fill up the client phone number field")
+    }else if(!adress){
+      Alert.alert("please fill up the client address field")
     }else{
       
        dispatch(AddClient( {fname,numberph,adress,balance}))
      //  props.add(newclt)
-      Alert.alert("client has been added succefuly")
+      Alert.alert(`${fname} has been added successfully`)
       setAdress("");
     setFname("");
     setNumberph("");
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
   input: {
     marginHorizontal: 20,
     marginVertical: 5,
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: "#4aaaa5",
     padding: 15,
     fontSize: 20,
