@@ -10,7 +10,7 @@ const Delivery = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{marginTop:30}}>
           
-            <Text style={{marginLeft:30,fontSize:20,color:"#4aaaa5"}}>Quantity</Text>
+                <Text style={{marginLeft:30,fontSize:20,color:"#4aaaa5"}}>Quantity</Text>
                 <TextInput placeholder="Quantity" keyboardType="numeric" style={styles.input}/>
                 <Text style={{marginLeft:30,fontSize:20,color:"#4aaaa5"}}>Price</Text>
                 <TextInput placeholder="Price" keyboardType="numeric" style={styles.input}/>
