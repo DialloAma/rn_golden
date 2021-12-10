@@ -1,7 +1,9 @@
 import React from 'react';
 import {View,Text, StyleSheet, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 
 const Delivery = () => {
+
     return (
         <View style={{marginTop:30,backgroundColor:"white",marginHorizontal:25}}>
             <View style={{alignItems:"center",marginTop:30}}>
@@ -9,7 +11,11 @@ const Delivery = () => {
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{marginTop:30}}>
-          
+     { /*<Picker style={{marginHorizontal:20,borderWidth:1,borderColor:"#4aaaa5"}}>
+          <Picker.Item label='select a product' />
+
+    </Picker>*/}
+    <AutoComplete></AutoComplete>
                 <Text style={{marginLeft:30,fontSize:20,color:"#4aaaa5"}}>Quantity</Text>
                 <TextInput placeholder="Quantity" keyboardType="numeric" style={styles.input}/>
                 <Text style={{marginLeft:30,fontSize:20,color:"#4aaaa5"}}>Price</Text>
