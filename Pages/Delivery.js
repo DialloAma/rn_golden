@@ -11,34 +11,27 @@ import { Picker } from "@react-native-picker/picker";
 import AutocompleteInput from "react-native-autocomplete-input";
 import { Dropdown } from "react-native-element-dropdown";
 import { useSelector } from "react-redux";
-const data = [
-  { label: 'Item 1', value: '1' },
-  { label: 'Item 2', value: '2' },
-  { label: 'Item 3', value: '3' },
-  { label: 'Item 4', value: '4' },
-  { label: 'Item 5', value: '5' },
-  { label: 'Item 6', value: '6' },
-  { label: 'Item 7', value: '7' },
-  { label: 'Item 8', value: '8' },
-];
+
 const Delivery = () => {
   const { product } = useSelector((state) => state.prodReducer);
   const names = product.map((item) => item.pname);
   console.log(product);
   const [prod, setProd] = useState("");
+  const [qty, setQty] = useState("");
+  const [price, setPrice] = useState("");
+  const [amou, setAmou] = useState(qty*price);
   return (
-    <View
-      style={{ marginTop: 30, backgroundColor: "white", marginHorizontal: 25 }}
-    >
-      <View style={{ alignItems: "center", marginTop: 30 }}>
+    <View style={{flex:1 }}>
+      <View style={{flex:1.5, alignItems: "center"}}>
         <Text style={{ fontSize: 30, color: "#4aaaa5", fontWeight: "bold" }}>
           Products Delivery
         </Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ marginTop: 30 }}>
+      <View  style={{flex:8.5,backgroundColor: "white"}}>
+        <ScrollView>
+        <View style={{alignItems:"flex-start",marginHorizontal:20}}>
         
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Product Name
           </Text>
           <Dropdown
@@ -57,7 +50,7 @@ const Delivery = () => {
               console.log(item)
             }}
           />
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{ fontSize: 20, color: "#4aaaa5" }}>
             Quantity
           </Text>
           <TextInput
@@ -65,7 +58,7 @@ const Delivery = () => {
             keyboardType="numeric"
             style={styles.input}
           />
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Price
           </Text>
           <TextInput
@@ -73,14 +66,16 @@ const Delivery = () => {
             keyboardType="numeric"
             style={styles.input}
           />
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
-            Amout
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
+            Amount
           </Text>
           <TextInput
             placeholder="Amount"
             keyboardType="numeric"
             caretHidden={true}
             style={styles.input}
+            value={amou}
+            onChangeText={(amou)=>setAmou(amou)}
           />
         </View>
         <View>
@@ -90,14 +85,16 @@ const Delivery = () => {
             </Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
+        </ScrollView>
+        </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    marginHorizontal: 20,
+   
+    width:'100%',
     marginVertical: 5,
     borderWidth: 1,
     borderColor: "#4aaaa5",
@@ -110,10 +107,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     backgroundColor: "#4aaaa5",
-    marginHorizontal: 80,
+    marginHorizontal: 100,
     borderRadius: 20,
-    marginTop: 40,
-    marginBottom: 30,
+   marginVertical:50
+    
   },
 });
 

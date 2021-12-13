@@ -42,18 +42,16 @@ const Client = (props) => {
   
   }
   return (
-    <View
-      style={{flex:1, marginTop: 30, backgroundColor: "white", marginHorizontal: 25 }}
-    >
-      <View style={{ alignItems: "center", marginTop: 30 }}>
+    <View style={{flex:1 }}>
+      <View style={{flex:1.5, alignItems: "center"}}>
         <Text style={{ fontSize: 30, color: "#4aaaa5", fontWeight: "bold" }}>
           Add Clients
         </Text>
       </View>
-      <KeyboardAvoidingView style={{flex:1}}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ marginTop: 30 }}>
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+      <View  style={{flex:8.5,backgroundColor: "white"}}>
+        <ScrollView>
+        <View style={{alignItems:"flex-start",marginHorizontal:20}}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Full Name
           </Text>
           <TextInput
@@ -66,7 +64,7 @@ const Client = (props) => {
             }}
             style={styles.input}
           />
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Phone Number
           </Text>
           <TextInput
@@ -78,7 +76,7 @@ const Client = (props) => {
             }}
             style={styles.input}
           />
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Adress
           </Text>
           <TextInput
@@ -100,22 +98,27 @@ const Client = (props) => {
             style={{ height: 0, width: 0 }}
           />
         </View>
-        <View>
-          <TouchableOpacity activeOpacity={0.5} style={styles.btn} onPress={AddClt}>
+        <View >
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={styles.btn}
+            onPress={AddClt}
+          >
             <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
               Valider
             </Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
-      </KeyboardAvoidingView>
+          </ScrollView>
+        </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    marginHorizontal: 20,
+   
+    width:'100%',
     marginVertical: 5,
     borderWidth: 1,
     borderColor: "#4aaaa5",
@@ -128,10 +131,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     backgroundColor: "#4aaaa5",
-    marginHorizontal: 80,
+    marginHorizontal: 100,
     borderRadius: 20,
-    marginTop: 20,
-    marginBottom: 30,
+   marginVertical:50
+    
   },
 });
 /*const mapDispatchToProps={

@@ -55,17 +55,16 @@ const Product = () => {
   };
 
   return (
-    <View
-      style={{ marginTop: 30, backgroundColor: "white", marginHorizontal: 25 }}
-    >
-      <View style={{ alignItems: "center", marginTop: 30 }}>
+    <View style={{flex:1 }}>
+      <View style={{flex:1.5, alignItems: "center"}}>
         <Text style={{ fontSize: 30, color: "#4aaaa5", fontWeight: "bold" }}>
           Add Products
         </Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ marginTop: 30 }}>
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+      <View  style={{flex:8.5,backgroundColor: "white"}}>
+        <ScrollView>
+        <View style={{alignItems:"flex-start",marginHorizontal:20}}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Product Name
           </Text>
           <TextInput
@@ -77,7 +76,7 @@ const Product = () => {
               setPname(pname);
             }}
           />
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{ fontSize: 20, color: "#4aaaa5" }}>
             Quantity
           </Text>
           <TextInput
@@ -89,7 +88,7 @@ const Product = () => {
               setQty(qty);
             }}
           />
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Price
           </Text>
           <TextInput
@@ -101,12 +100,12 @@ const Product = () => {
               setPrice(price);
             }}
           />
-          <Text style={{ marginLeft: 30, fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Expiration Date
           </Text>
 
           <DatePicker
-            style={{ width: 350 }}
+            style={{ width: '80%' }}
             date={exdat}
             mode="date"
             onDateChange={(exdat) => {
@@ -118,10 +117,8 @@ const Product = () => {
             placeholder="select date"
             customStyles={{
               dateInput: {
-                marginLeft: 20,
-                height: 60,
-
-                marginTop: 30,
+               height: 60,
+               marginTop: 30,
                 borderColor: "#4aaaa5",
                 borderRadius: 20,
                 borderWidth: 1,
@@ -139,7 +136,7 @@ const Product = () => {
             }}
           />
         </View>
-        <View>
+        <View >
           <TouchableOpacity
             activeOpacity={0.5}
             style={styles.btn}
@@ -150,14 +147,16 @@ const Product = () => {
             </Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    marginHorizontal: 20,
+   
+    width:'100%',
     marginVertical: 5,
     borderWidth: 1,
     borderColor: "#4aaaa5",
@@ -170,10 +169,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     backgroundColor: "#4aaaa5",
-    marginHorizontal: 80,
+    marginHorizontal: 100,
     borderRadius: 20,
-    marginTop: 40,
-    marginBottom: 30,
+   marginVertical:50
+    
   },
 });
 
