@@ -1,6 +1,6 @@
 
 export const AddClient=(newclt)=>{
-   // newclt.id=Math.random()
+    newclt.id=Math.random().toString
     return{
         type:'ADD_CLT',
         payload:newclt

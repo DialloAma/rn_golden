@@ -19,7 +19,14 @@ const Delivery = () => {
   const [prod, setProd] = useState("");
   const [qty, setQty] = useState("");
   const [price, setPrice] = useState("");
-  const [amou, setAmou] = useState(qty*price);
+  const [amou, setAmou] = useState("");
+  const calcul=()=>{
+    if(qty && price){
+     setAmou(  parseInt(qty)*parseInt(price))
+    }else{
+
+    }
+  }
   return (
     <View style={{flex:1 }}>
       <View style={{flex:1.5, alignItems: "center"}}>
@@ -57,6 +64,8 @@ const Delivery = () => {
             placeholder="Quantity"
             keyboardType="numeric"
             style={styles.input}
+            value={qty}
+            onChangeText={(qty)=>setQty(qty)}
           />
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Price
@@ -65,6 +74,8 @@ const Delivery = () => {
             placeholder="Price"
             keyboardType="numeric"
             style={styles.input}
+            value={price}
+            onChangeText={(price)=>setPrice(price)}
           />
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Amount
@@ -72,14 +83,14 @@ const Delivery = () => {
           <TextInput
             placeholder="Amount"
             keyboardType="numeric"
-            caretHidden={true}
+           caretHidden={true}
             style={styles.input}
             value={amou}
-            onChangeText={(amou)=>setAmou(amou)}
-          />
+            onChangeText={()=>setAmou({ amou: (qty&&price)? parseInt(qty)*parseInt(price): null}) }/>
+            <Text style={{fontSize:25,alignItems:"center"}}>{amou}</Text>
         </View>
         <View>
-          <TouchableOpacity activeOpacity={0.5} style={styles.btn}>
+          <TouchableOpacity activeOpacity={0.5} style={styles.btn} onPress={calcul}>
             <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
               Valider
             </Text>
