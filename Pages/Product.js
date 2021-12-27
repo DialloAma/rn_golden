@@ -23,18 +23,14 @@ const Product = () => {
   const [exdat, setExdat] = useState("");
 
   const AddProduit = () => {
-    let names = product.map((item) => item.pname);
-    /*  for(let i=0; i<product.length; i++){
-      if(product[i].pname===pname){
+    //let names = product.map((item) => item.pname);
+      for(let i=0; i < product.length; i++){
+      if(product[i].pname === pname){
         Alert.alert("this product alredy exists,please change the name of the product")
         break;
       }
-    }*/
-    if (names === pname) {
-      Alert.alert(
-        "this product alredy exists,please change the name of the product"
-      );}
-     else if (!pname) {
+    }
+   if (!pname) {
         Alert.alert("please fill up the product name field");
         return;
       } else if (!qty) {

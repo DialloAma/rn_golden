@@ -7,6 +7,7 @@ import Client from '../Pages/Client';
 import Delivery from '../Pages/Delivery';
 import Payement from '../Pages/Payement';
 import CltList from "../Lists/CltList";
+import Sell from "../Pages/Sell";
 
 import { Header } from "react-native/Libraries/NewAppScreen";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -52,7 +53,7 @@ const Menu = () => {
           
         }}
       >
-        
+        <Drawer.Screen   name="Sell" component={Sell} />
         <Drawer.Screen   name="Product" component={Product} />
         <Drawer.Screen  name="Client" component={Client} />
         <Drawer.Screen name="Payement" component={Payement} />

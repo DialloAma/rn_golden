@@ -17,9 +17,9 @@ const Delivery = () => {
   const names = product.map((item) => item.pname);
   console.log(product);
   const [prod, setProd] = useState("");
-  const [qty, setQty] = useState("");
-  const [price, setPrice] = useState("");
-  const [amou, setAmou] = useState("");
+  const [qty, setQty] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [amou, setAmou] = useState(0);
   const calcul=()=>{
     if(qty && price){
      setAmou(  parseInt(qty)*parseInt(price))
@@ -64,7 +64,9 @@ const Delivery = () => {
             placeholder="Quantity"
             keyboardType="numeric"
             style={styles.input}
+            
             value={qty}
+            
             onChangeText={(qty)=>setQty(qty)}
           />
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
@@ -74,6 +76,7 @@ const Delivery = () => {
             placeholder="Price"
             keyboardType="numeric"
             style={styles.input}
+           
             value={price}
             onChangeText={(price)=>setPrice(price)}
           />
@@ -85,8 +88,11 @@ const Delivery = () => {
             keyboardType="numeric"
            caretHidden={true}
             style={styles.input}
+            
             value={amou}
-            onChangeText={()=>setAmou({ amou: (qty&&price)? parseInt(qty)*parseInt(price): null}) }/>
+           // onChangeText={(amou)=>calcul(amou)}
+           // onChangeText={()=>setAmou({ amou: (qty&&price)? parseInt(qty)*parseInt(price): null}) }
+          />
             <Text style={{fontSize:25,alignItems:"center"}}>{amou}</Text>
         </View>
         <View>

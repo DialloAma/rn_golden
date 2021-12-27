@@ -6,7 +6,7 @@ export default function CltList() {
     const {client}=useSelector((state)=>state.cltReducer)
     console.log(client)
     return (
-           <View>
+           <View style={{flex:1}}>
 {/*client.map((clt,index)=>{
     return(
         
@@ -14,7 +14,13 @@ export default function CltList() {
     )
 })*/}
            
-       
+           <View style={{flexDirection:"row",borderBottomWidth:1,marginTop:20}}>
+        <Text style={{marginLeft:20,fontSize:15,flex:1}}>Full Name</Text>
+        <Text style={{marginLeft:20,fontSize:15,flex:1}}>Number</Text>
+        <Text style={{marginLeft:20,fontSize:15,flex:1}}>Adress</Text>
+        <Text style={{marginLeft:20,fontSize:15,flex:1}}>Balance</Text>
+        <Text style={{marginLeft:20,fontSize:15,flex:1}}>Action</Text>
+    </View>
         
             <FlatList data={client}  renderItem={({item})=>{
                return(
@@ -28,18 +34,13 @@ export default function CltList() {
 }
 const Lists=({name,numb,adres,balan})=>(
 
-<View style={{marginTop:30,flexDirection:"column"}}>
-    <View style={{flexDirection:"row"}}>
-        <Text style={{marginLeft:20,fontSize:15}}>Full Name</Text>
-        <Text style={{marginLeft:20,fontSize:15}}>Number</Text>
-        <Text style={{marginLeft:20,fontSize:15}}>Adress</Text>
-        <Text style={{marginLeft:20,fontSize:15}}>Balance</Text>
-    </View>
-    <View style={{flexDirection:"row"}}>
+
+  
+    <View style={{flexDirection:"row",borderBottomWidth:1}}>
 <Text style={{marginLeft:20,fontSize:15}}>{name}</Text>
 <Text style={{marginLeft:20,fontSize:15}}>{numb}</Text>
 <Text style={{marginLeft:20,fontSize:15}}>{adres}</Text>
 <Text style={{marginLeft:20,fontSize:15}}>{balan}</Text>
 </View>
-</View>
+
 )
