@@ -19,3 +19,27 @@ export const ProdReducer=(state={product:[]},action)=>{
             return state;
     }
 }
+ export const CartReducer=(state={items:[]},action)=>{
+     switch(action.type){
+         case 'ADD_CART':
+            if (action.payload.checkboxvalue){
+                console.log("Addd")
+                return{
+                 ...state, items:[...state.items,action.payload]
+                }
+            }
+            else{
+                console.log("Remove")
+                
+                return{
+                        ...state, items: state.items.filter((item)=>item.id !== action.payload.id)
+                    }
+                }
+              
+            
+             
+         default:
+             return state;
+
+     }
+ }

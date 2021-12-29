@@ -13,10 +13,13 @@ import { Header } from "react-native/Libraries/NewAppScreen";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useSelector } from "react-redux";
 
 
 const Drawer = createDrawerNavigator();
 const Menu = () => {
+  const {items} =useSelector((state)=>state.cart)
+  
   const Searchbar=()=>{
     return(
       <SafeAreaView style={{backgroundColor:"#4aaaa5"}}>
@@ -45,7 +48,9 @@ const Menu = () => {
               name="shopping-cart"
               size={24}
               color="white"
-            />
+            >
+            <Text style={{color:"red",fontSize:20}}>{items.length}</Text>
+            </FontAwesome5>
             </TouchableOpacity>
           ),
           

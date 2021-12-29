@@ -4595,6 +4595,11 @@ react-native-autocomplete-input@^5.0.2:
   resolved "https://registry.yarnpkg.com/react-native-autocomplete-input/-/react-native-autocomplete-input-5.0.2.tgz#82556823b534dd1a9aabe222fda8579b3a14d011"
   integrity sha512-CL20a5Rg/jsiuavlG6cm8MRFyH1nICXFrvtlVMrJ3IKUa6AW/Ge4QqCFa7AjZKzEus1uDeMzcHC+bOhcgSudUQ==
 
+react-native-bouncy-checkbox@^2.1.9:
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/react-native-bouncy-checkbox/-/react-native-bouncy-checkbox-2.1.9.tgz#b15db336e3c76d3c2dcb8fb9ba3a98cbf083a7d8"
+  integrity sha512-XPdGLS7/QcfRH7J7dngvh0xzm2o+5V48TP4OJGXPjMPWH7grdXZS3PKOYVTErlZHCbbdm0gE+Iw7aXVSNQnIQQ==
+
 react-native-codegen@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.6.tgz#b3173faa879cf71bfade8d030f9c4698388f6909"
