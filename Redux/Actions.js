@@ -23,6 +23,12 @@ export const AddItems=(item,qtysold)=>{
         }
     }
 }
+const AddDeliver=(newdel)=>{
+    return{
+        type:'ADD-DELIV',
+        payload: newdel
+    }
+}
 export const RemoveCart=(id)=>{
     return{
           type:'REMOV',
