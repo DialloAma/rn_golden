@@ -14,17 +14,26 @@ export const AddProdt=(newprod)=>{
         payload:newprod
     }
 }
-export const AddItems=(item, checkboxvalue)=>{
-   // item.id=Math.random().toString()
+export const AddItems=(item,qtysold)=>{
     return{
         type:'ADD_CART',
         payload: {...item ,
-            checkboxvalue: checkboxvalue}
+           // checkboxvalue:checkboxvalue,  
+           qtysold: qtysold
+        }
     }
 }
 export const RemoveCart=(id)=>{
     return{
           type:'REMOV',
           payload:id
+    }
+}
+export const UpdatQty=(qtysold,id)=>{
+    console.log(qtysold)
+    return{
+        type:'UPQTYSOLD',
+        payload: {id:id,
+        qtysold:qtysold}
     }
 }

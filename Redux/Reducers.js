@@ -22,7 +22,17 @@ export const ProdReducer=(state={product:[]},action)=>{
  export const CartReducer=(state={items:[]},action)=>{
      switch(action.type){
          case 'ADD_CART':
-            if (action.payload.checkboxvalue){
+            const item = action.payload;
+            const exist = state.items.find((x)=>x.id===item.id)
+            if(exist){
+                return{
+                   ...state, items:state.items.map((x)=>x.id===exist.id ? item : x)    
+                } 
+            }else{
+                return{...state, items:[...state.items,item]}
+            }
+           
+          /* if (action.payload.checkboxvalue){
                 console.log("Addd")
                 return{
                  ...state, items:[...state.items,action.payload]
@@ -34,9 +44,14 @@ export const ProdReducer=(state={product:[]},action)=>{
                 return{
                         ...state, items: state.items.filter((item)=>item.id !== action.payload.id)
                     }
-                }
+            }*/
+         
+             
               
-            
+            case 'REMOV':
+                return{
+                    ...state, items: state.items.filter((item)=>item.id !== action.payload) 
+                }
              
          default:
              return state;

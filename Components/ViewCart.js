@@ -12,19 +12,7 @@ const Viewcart = () => {
 
                 
             
-              <TouchableOpacity
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 10,
-                  backgroundColor: "#4aaaa5",
-                  marginHorizontal: 100,
-                  borderRadius: 20,
-                  //marginVertical: 5,
-                }}
-              >
-                <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>View Cart</Text>
-              </TouchableOpacity>
+             
             
             </View>
           );

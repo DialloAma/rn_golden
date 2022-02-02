@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -20,13 +20,22 @@ const Delivery = () => {
   const [qty, setQty] = useState(0);
   const [price, setPrice] = useState(0);
   const [amou, setAmou] = useState(0);
-  const calcul=()=>{
+ /* const calcul=()=>{
     if(qty && price){
      setAmou(  parseInt(qty)*parseInt(price))
     }else{
 
     }
-  }
+  }*/
+  useEffect(()=>{
+    if(!qty || !price){
+      setAmou(0)
+    }else{
+       res= parseInt(qty)*parseInt(price)
+      setAmou(res)
+    }
+ 
+  },[qty,price])
   return (
     <View style={{flex:1 }}>
       <View style={{flex:1.5, alignItems: "center"}}>
@@ -64,9 +73,7 @@ const Delivery = () => {
             placeholder="Quantity"
             keyboardType="numeric"
             style={styles.input}
-            
             value={qty}
-            
             onChangeText={(qty)=>setQty(qty)}
           />
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
@@ -76,27 +83,16 @@ const Delivery = () => {
             placeholder="Price"
             keyboardType="numeric"
             style={styles.input}
-           
-            value={price}
+           value={price}
             onChangeText={(price)=>setPrice(price)}
           />
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Amount
           </Text>
-          <TextInput
-            placeholder="Amount"
-            keyboardType="numeric"
-           caretHidden={true}
-            style={styles.input}
-            
-            value={amou}
-           // onChangeText={(amou)=>calcul(amou)}
-           // onChangeText={()=>setAmou({ amou: (qty&&price)? parseInt(qty)*parseInt(price): null}) }
-          />
-            <Text style={{fontSize:25,alignItems:"center"}}>{amou}</Text>
+          <Text style={styles.input}>{amou}</Text>
         </View>
         <View>
-          <TouchableOpacity activeOpacity={0.5} style={styles.btn} onPress={calcul}>
+          <TouchableOpacity activeOpacity={0.5} style={styles.btn} >
             <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
               Valider
             </Text>

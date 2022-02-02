@@ -8,6 +8,8 @@ import Delivery from '../Pages/Delivery';
 import Payement from '../Pages/Payement';
 import CltList from "../Lists/CltList";
 import Sell from "../Pages/Sell";
+import ViewCart from "../Pages/ViewCart";
+import Shopping from "../Pages/Shopping";
 
 import { Header } from "react-native/Libraries/NewAppScreen";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -17,7 +19,7 @@ import { useSelector } from "react-redux";
 
 
 const Drawer = createDrawerNavigator();
-const Menu = () => {
+const Menu = ({navigation}) => {
   const {items} =useSelector((state)=>state.cart)
   
   const Searchbar=()=>{
@@ -42,7 +44,7 @@ const Menu = () => {
          headerTitleAlign:"center",
          headerTitle:"",
           headerRight: () => (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>navigation.navigate("Cart")}>
             <FontAwesome5
               style={{marginRight:30}}
               name="shopping-cart"
@@ -58,11 +60,12 @@ const Menu = () => {
           
         }}
       >
-        <Drawer.Screen   name="Sell" component={Sell} />
+        <Drawer.Screen   name="Shop" component={Shopping} />
         <Drawer.Screen   name="Product" component={Product} />
         <Drawer.Screen  name="Client" component={Client} />
         <Drawer.Screen name="Payement" component={Payement} />
         <Drawer.Screen  name="Deliver" component={Delivery} />
+        <Drawer.Screen  name="Cart" component={ViewCart} />
         <Drawer.Screen  name="list" component={CltList} />
         
         
