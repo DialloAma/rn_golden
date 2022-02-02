@@ -19,6 +19,17 @@ export const ProdReducer=(state={product:[]},action)=>{
             return state;
     }
 }
+export const DeliverReducer=(state={Deliv:[]},action)=>{
+    switch(action.type){
+           case 'ADD-DELIV':
+               return{
+                   ...state, Deliv:[...state.Deliv,action.payload]
+               }
+               default:
+                   return state;
+    }
+
+}
  export const CartReducer=(state={items:[]},action)=>{
      switch(action.type){
          case 'ADD_CART':
