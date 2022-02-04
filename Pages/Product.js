@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DatePicker from "react-native-datepicker";
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { AddProdt } from "../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,11 +17,11 @@ const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.prodReducer);
   console.log(product);
-  
+  var dat =new Date();
   const [pname, setPname] = useState("");
   const [qty, setQty] = useState("");
   const [price, setPrice] = useState("");
-  const [exdat, setExdat] = useState("");
+  const [exdat, setExdat] = useState(dat);
 
   const AddProduit = () => {
     //let names = product.map((item) => item.pname);

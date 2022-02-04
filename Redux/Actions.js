@@ -23,7 +23,7 @@ export const AddItems=(item,qtysold)=>{
         }
     }
 }
-const AddDeliver=(newdel)=>{
+export const AddDeliver=(newdel)=>{
     return{
         type:'ADD-DELIV',
         payload: newdel

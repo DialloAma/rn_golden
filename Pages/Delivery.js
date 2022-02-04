@@ -6,36 +6,52 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import AutocompleteInput from "react-native-autocomplete-input";
 import { Dropdown } from "react-native-element-dropdown";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { AddDeliver } from "../Redux/Actions"; 
 
 const Delivery = () => {
   const { product } = useSelector((state) => state.prodReducer);
   const names = product.map((item) => item.pname);
+  const { Deliv } = useSelector((state) => state.deliv);
+  console.log(Deliv);
+  const dispatch=useDispatch();
   console.log(product);
-  const [prod, setProd] = useState("");
+  const [prod, setProd] = useState();
   const [qty, setQty] = useState(0);
   const [price, setPrice] = useState(0);
   const [amou, setAmou] = useState(0);
- /* const calcul=()=>{
-    if(qty && price){
-     setAmou(  parseInt(qty)*parseInt(price))
-    }else{
-
-    }
-  }*/
   useEffect(()=>{
     if(!qty || !price){
       setAmou(0)
     }else{
-       res= parseInt(qty)*parseInt(price)
+      const res= parseInt(qty)*parseInt(price)
       setAmou(res)
     }
  
   },[qty,price])
+  const Add=()=>{
+   /* if (!prod) {
+      Alert.alert("please fill up the product name field");
+      return;
+    } else */ if (!qty) {
+      Alert.alert("please fill up the product quantity field");
+    } else if (!price) {
+      Alert.alert("please fill up the product price field");
+    }else{
+      dispatch(AddDeliver({prod,qty,price,amou}))
+      Alert.alert(`${prod} has been added successfully`);
+      setProd("");
+      setQty("");
+      setPrice("");
+      setAmou("");
+    }
+  }
   return (
     <View style={{flex:1 }}>
       <View style={{flex:1.5, alignItems: "center"}}>
@@ -50,9 +66,20 @@ const Delivery = () => {
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Product Name
           </Text>
-          <Dropdown
+          
+          <Picker placeholder="please select a product" mode="Dropdown" style={styles.input} selectedValue={prod} onValueChange={(itemValue) => setProd(itemValue)}>
+          <Picker.Item style={styles.input} label="Please select a Product" />
+               {product.map((item,index)=>{
+                 return(
+                 
+
+                   <Picker.Item  style={styles.input} label={item.pname} value={item.pname} key={index}/>
+                   )
+                 
+               })}
+          </Picker>
+          {/*<Dropdown
             style={styles.input}
-    
             selectedTextStyle={{fontSize:20}}
             labelField="pname"
             valueField="id"
@@ -65,7 +92,7 @@ const Delivery = () => {
               setProd(item.value);
               console.log(item)
             }}
-          />
+          />*/}
           <Text style={{ fontSize: 20, color: "#4aaaa5" }}>
             Quantity
           </Text>
@@ -86,13 +113,14 @@ const Delivery = () => {
            value={price}
             onChangeText={(price)=>setPrice(price)}
           />
+        
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Amount
           </Text>
           <Text style={styles.input}>{amou}</Text>
         </View>
         <View>
-          <TouchableOpacity activeOpacity={0.5} style={styles.btn} >
+          <TouchableOpacity activeOpacity={0.5} style={styles.btn} onPress={Add} >
             <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
               Valider
             </Text>
