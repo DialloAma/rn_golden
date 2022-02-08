@@ -11,20 +11,20 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  Button,
 } from "react-native";
 
 const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.prodReducer);
   console.log(product);
-  var dat =new Date();
+  
   const [pname, setPname] = useState("");
   const [qty, setQty] = useState("");
   const [price, setPrice] = useState("");
-  const [exdat, setExdat] = useState(dat);
-
+  const [exdat, setExdat] = useState(new Date());
   const AddProduit = () => {
-    //let names = product.map((item) => item.pname);
+    
       for(let i=0; i < product.length; i++){
       if(product[i].pname === pname){
         Alert.alert("this product alredy exists,please change the name of the product")
@@ -46,22 +46,22 @@ const Product = () => {
         setPname("");
         setQty("");
         setPrice("");
-        setExdat("")
+        setExdat(new Date())
       }
   
   };
 
   return (
     <View style={{flex:1 }}>
-      <View style={{flex:1.5, alignItems: "center"}}>
-        <Text style={{ fontSize: 30, color: "#4aaaa5", fontWeight: "bold" }}>
+      <View style={{flex:1, alignItems: "center"}}>
+        <Text style={{ fontSize: 40, color: "#4aaaa5", fontWeight: "bold" ,marginTop:20 }}>
           Add Products
         </Text>
       </View>
-      <View  style={{flex:8.5,backgroundColor: "white"}}>
+      <View  style={{flex:9,backgroundColor: "white",marginTop:20}}>
         <ScrollView>
         <View style={{alignItems:"flex-start",marginHorizontal:20}}>
-          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5",marginTop:20 }}>
             Product Name
           </Text>
           <TextInput
@@ -100,6 +100,7 @@ const Product = () => {
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Expiration Date
           </Text>
+         
 
           <DatePicker
             style={{ width: '80%' }}
@@ -133,13 +134,13 @@ const Product = () => {
             }}
           />
         </View>
-        <View >
+        <View style={{marginHorizontal:20}} >
           <TouchableOpacity
             activeOpacity={0.5}
             style={styles.btn}
             onPress={AddProduit}
           >
-            <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize: 30, color: "white", fontWeight: "bold" }}>
               Valider
             </Text>
           </TouchableOpacity>
@@ -152,23 +153,22 @@ const Product = () => {
 
 const styles = StyleSheet.create({
   input: {
-   
     width:'100%',
     marginVertical: 5,
     borderWidth: 1,
     borderColor: "#4aaaa5",
     padding: 15,
-    fontSize: 20,
-    borderRadius: 20,
+    fontSize: 25,
+    borderRadius: 15,
   },
   btn: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
+    padding: 15,
     backgroundColor: "#4aaaa5",
-    marginHorizontal: 100,
-    borderRadius: 20,
-   marginVertical:50
+    borderRadius: 15,
+   marginVertical:50,
+   width:"100%"
     
   },
 });
