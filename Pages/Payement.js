@@ -8,14 +8,14 @@ const Payement = () => {
      const [clt, setClt] = useState("")
     return (
         <View style={{flex:1 }}>
-        <View style={{flex:1.5, alignItems: "center"}}>
-          <Text style={{ fontSize: 30, color: "#4aaaa5", fontWeight: "bold" }}>
+        <View style={{flex:1, alignItems: "center"}}>
+          <Text style={{ fontSize: 30, color: "#4aaaa5", fontWeight: "bold",marginTop:20 }}>
             Payements
           </Text>
         </View>
-        <View  style={{flex:8.5,backgroundColor: "white"}}>
+        <View  style={{flex:9,backgroundColor: "white",marginTop:20}}>
           <ScrollView>
-          <View style={{alignItems:"flex-start",marginHorizontal:20}}>
+          <View style={{alignItems:"flex-start",marginHorizontal:20,marginTop:20}}>
           
             <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
               Client Number
@@ -23,7 +23,7 @@ const Payement = () => {
             <Dropdown
               style={styles.input}
       
-              selectedTextStyle={{fontSize:20}}
+              selectedTextStyle={{fontSize:25}}
               labelField="numberph"
               valueField="id"
               data={client}
@@ -58,9 +58,9 @@ const Payement = () => {
              // onChangeText={}
              />
           </View>
-          <View>
+          <View style={{marginHorizontal:20}}>
             <TouchableOpacity activeOpacity={0.5} style={styles.btn} >
-              <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
+              <Text style={{ fontSize: 30, color: "white", fontWeight: "bold" }}>
                 Valider
               </Text>
             </TouchableOpacity>
@@ -79,16 +79,16 @@ const Payement = () => {
       borderWidth: 1,
       borderColor: "#4aaaa5",
       padding: 15,
-      fontSize: 20,
-      borderRadius: 20,
+      fontSize: 25,
+      borderRadius: 15,
     },
     btn: {
       alignItems: "center",
       justifyContent: "center",
-      padding: 10,
+      padding: 15,
       backgroundColor: "#4aaaa5",
-      marginHorizontal: 100,
-      borderRadius: 20,
+      width:"100%",
+      borderRadius: 15,
      marginVertical:50
       
     },

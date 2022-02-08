@@ -43,14 +43,14 @@ const Client = (props) => {
   }
   return (
     <View style={{flex:1 }}>
-      <View style={{flex:1.5, alignItems: "center"}}>
-        <Text style={{ fontSize: 30, color: "#4aaaa5", fontWeight: "bold" }}>
+      <View style={{flex:1, alignItems: "center"}}>
+        <Text style={{ fontSize: 40, color: "#4aaaa5", fontWeight: "bold",marginTop:20 }}>
           Add Clients
         </Text>
       </View>
-      <View  style={{flex:8.5,backgroundColor: "white"}}>
+      <View  style={{flex:9,backgroundColor: "white",marginTop:20}}>
         <ScrollView>
-        <View style={{alignItems:"flex-start",marginHorizontal:20}}>
+        <View style={{alignItems:"flex-start",marginHorizontal:20,marginTop:20}}>
           <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
             Full Name
           </Text>
@@ -98,13 +98,13 @@ const Client = (props) => {
             style={{ height: 0, width: 0 }}
           />
         </View>
-        <View >
+        <View style={{marginHorizontal:20}}>
           <TouchableOpacity
             activeOpacity={0.5}
             style={styles.btn}
             onPress={AddClt}
           >
-            <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize: 30, color: "white", fontWeight: "bold" }}>
               Valider
             </Text>
           </TouchableOpacity>
@@ -123,28 +123,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#4aaaa5",
     padding: 15,
-    fontSize: 20,
-    borderRadius: 20,
+    fontSize: 25,
+    borderRadius: 15,
   },
   btn: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
+    padding: 15,
     backgroundColor: "#4aaaa5",
-    marginHorizontal: 100,
-    borderRadius: 20,
+    width:"100%",
+    borderRadius: 15,
    marginVertical:50
     
   },
 });
-/*const mapDispatchToProps={
- add :AddClient
-}
-const mapStateToProps=(state)=>{
-    console.log(state)
-    return{
-        client: state.cltReducer}
-}
 
-export default connect(mapStateToProps,mapDispatchToProps)(Client);*/
 export default Client;
