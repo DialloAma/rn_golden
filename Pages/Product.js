@@ -53,12 +53,12 @@ const Product = () => {
 
   return (
     <View style={{flex:1 }}>
-      <View style={{flex:1, alignItems: "center"}}>
-        <Text style={{ fontSize: 40, color: "#4aaaa5", fontWeight: "bold" ,marginTop:20 }}>
+      <View style={{flex:1.5, alignItems: "center"}}>
+        <Text style={{ fontSize: 35, color: "#4aaaa5", fontWeight: "bold" ,marginTop:10 }}>
           Add Products
         </Text>
       </View>
-      <View  style={{flex:9,backgroundColor: "white",marginTop:20}}>
+      <View  style={{flex:8.5,backgroundColor: "white",marginTop:15}}>
         <ScrollView>
         <View style={{alignItems:"flex-start",marginHorizontal:20}}>
           <Text style={{  fontSize: 20, color: "#4aaaa5",marginTop:20 }}>

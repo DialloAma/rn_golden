@@ -57,12 +57,12 @@ const Delivery = () => {
   }
   return (
     <View style={{flex:1 }}>
-      <View style={{flex:1, alignItems: "center"}}>
-        <Text style={{ fontSize: 40, color: "#4aaaa5", fontWeight: "bold",marginTop:20 }}>
+      <View style={{flex:1.5, alignItems: "center"}}>
+        <Text style={{ fontSize: 40, color: "#4aaaa5", fontWeight: "bold",marginTop:10 }}>
           Products Delivery
         </Text>
       </View>
-      <View  style={{flex:9,backgroundColor: "white"}}>
+      <View  style={{flex:8.5,backgroundColor: "white"}}>
         <ScrollView>
         <View style={{alignItems:"flex-start",marginHorizontal:20}}>
         
@@ -92,7 +92,7 @@ const Delivery = () => {
             
             onChange={(item) => {
               setProd(item.pname);
-              console.log(item.pname)
+             
               
             }}
           />

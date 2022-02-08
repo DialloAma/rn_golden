@@ -43,15 +43,15 @@ const Client = (props) => {
   }
   return (
     <View style={{flex:1 }}>
-      <View style={{flex:1, alignItems: "center"}}>
-        <Text style={{ fontSize: 40, color: "#4aaaa5", fontWeight: "bold",marginTop:20 }}>
+      <View style={{flex:1.5, alignItems: "center"}}>
+        <Text style={{ fontSize: 40, color: "#4aaaa5", fontWeight: "bold",marginTop:10 }}>
           Add Clients
         </Text>
       </View>
-      <View  style={{flex:9,backgroundColor: "white",marginTop:20}}>
+      <View  style={{flex:8.5,backgroundColor: "white"}}>
         <ScrollView>
-        <View style={{alignItems:"flex-start",marginHorizontal:20,marginTop:20}}>
-          <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
+        <View style={{alignItems:"flex-start",marginHorizontal:20}}>
+          <Text style={{  fontSize: 20, color: "#4aaaa5",marginTop:15 }}>
             Full Name
           </Text>
           <TextInput
