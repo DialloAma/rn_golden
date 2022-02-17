@@ -8,6 +8,7 @@ if(url==='/'){
 }
 responseObject.end();
 }
-server.use(handleReq);
+//server.use(handleReq);
+server.get('/',(req,res)=>res.send('welcome to my profile'))
 
 server.listen(2000,"127.0.0.1", ()=>console.log("My server is ready") )
