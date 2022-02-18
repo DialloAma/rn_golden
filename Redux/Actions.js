@@ -1,9 +1,12 @@
 
 export const AddClient=(newclt)=>{
     newclt.id=Math.random().toString()
-    return{
+   /* return{
         type:'ADD_CLT',
         payload:newclt
+    }*/
+    return async (dispatch)=>{
+        
     }
 }
 
