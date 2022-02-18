@@ -3,10 +3,12 @@ const server = express();
 const bodyParser = require("body-parser");
 const mongoose =require("mongoose");
 const CltRouter= require("./Routes/client");
+const ProdRouter = require("./Routes/products")
 server.use(bodyParser.json());
 
 
 server.use(CltRouter);
+server.use(ProdRouter);
 
 //connect my app to mongodb
 mongoose.connect("mongodb+srv://goldenUser:y0iMzZMDtygc26NX@cluster0.vkk55.mongodb.net/Golden?retryWrites=true&w=majority",

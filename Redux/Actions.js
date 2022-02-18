@@ -1,4 +1,4 @@
-
+import axios from "axios";
 export const AddClient=(newclt)=>{
     newclt.id=Math.random().toString()
    /* return{
@@ -6,7 +6,17 @@ export const AddClient=(newclt)=>{
         payload:newclt
     }*/
     return async (dispatch)=>{
+           const url='http://localhost:2000/Client';
+           await axios.post(url, newclt)
+      .then(res => {
+        console.log("Status: ", res.status);
+        console.log(res.data);
+        dispatch(newclt);
+      })
+      .catch(err => {
+        console.log(err.message);
         
+      });
     }
 }
 
