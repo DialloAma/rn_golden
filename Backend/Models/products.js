@@ -13,8 +13,8 @@ const productSchema = new Schema({
       type:Number,
       required:true
    },
-   exdate:{
-       type: Date,
+   exdat:{
+       type: String,
        default:Date.now
    }
 })

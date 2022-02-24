@@ -1,6 +1,10 @@
 const express =require("express");
 const router = express.Router();
-const CreateCltController= require("../Controllers/clients")
+const {CreateCltController,listClients,updateControllerClt}= require("../Controllers/clients")
 
-router.post('/Client',CreateCltController);
+
+router.post('/Clients',CreateCltController);
+router.get('/Clients',listClients);
+router.put('/Clients',updateControllerClt);
+
 module.exports= router;

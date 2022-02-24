@@ -24,13 +24,6 @@ const Product = () => {
   const [price, setPrice] = useState("");
   const [exdat, setExdat] = useState(new Date());
   const AddProduit = () => {
-    
-      for(let i=0; i < product.length; i++){
-      if(product[i].pname === pname){
-        Alert.alert("this product alredy exists,please change the name of the product")
-        break;
-      }
-    }
    if (!pname) {
         Alert.alert("please fill up the product name field");
         return;

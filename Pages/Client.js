@@ -9,7 +9,7 @@ import {
   Alert,
   KeyboardAvoidingView,
 } from "react-native";
-import { AddClient } from "../Redux/Actions";
+import { AddClient,ajout } from "../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "react-redux";
 
@@ -31,7 +31,7 @@ const Client = (props) => {
       Alert.alert("please fill up the client address field")
     }else{
       
-       dispatch(AddClient( {fname,numberph,adress,balance}))
+       dispatch(AddClient({fname,numberph,adress,balance}))
      //  props.add(newclt)
       Alert.alert(`${fname} has been added successfully`)
       setAdress("");
@@ -41,6 +41,7 @@ const Client = (props) => {
     
   
   }
+ 
   return (
     <View style={{flex:1 }}>
       <View style={{flex:1.5, alignItems: "center"}}>
