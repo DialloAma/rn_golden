@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   View,
   Text,
@@ -22,10 +22,20 @@ export default function ViewCart() {
   const dispatch = useDispatch();
   const { client } = useSelector((state) => state.cltReducer);
   const [clt, setClt] = useState("");
+  const [pay,setPay] = useState("");
+  const [balan,setBalan] = useState("0");
+  const total= Cartitems.reduce((a, b) => a + parseInt(b.qtysold* b.price), 0)
 
-  const deletCart = (id) => {
-    dispatch(RemoveCart(id));
-  };
+ useEffect(() => {
+   if(!pay){
+     setBalan(0)
+   }else{
+    const res= parseInt(total)-parseInt(pay) 
+    setBalan(res)
+   }
+   
+}, [pay,balan]);
+
   return (
     <View style={{ flex: 1, marginHorizontal: 20 }}>
      
@@ -60,7 +70,7 @@ export default function ViewCart() {
                   </Text>
                 </View>
                 <View style={{ flex: 1 }}>
-                  <TouchableOpacity onPress={() => deletCart(item._id)}>
+                  <TouchableOpacity onPress={() => dispatch(RemoveCart(item._id))}>
                     <MaterialIcons
                       name="delete"
                       size={24}
@@ -81,13 +91,7 @@ export default function ViewCart() {
             Client Phone Number
           </Text>
           <Dropdown
-            style={{
-              borderWidth: 1,
-              borderColor: "#4aaaa5",
-              padding: 5,
-              fontSize: 20,
-              color: "#4aaaa5",
-            }}
+           style={styles.input}
             selectedTextStyle={{ fontSize: 20 }}
             labelField="numberph"
             valueField="id"
@@ -103,17 +107,17 @@ export default function ViewCart() {
           <Text style={{ fontSize: 20, color: "#4aaaa5" }}>Payed</Text>
           <TextInput
             keyboardType="numeric"
-            style={{
-              borderWidth: 1,
-              borderColor: "#4aaaa5",
-              padding: 5,
-              fontSize: 20,
-              color: "#4aaaa5",
-            }}
+            value={pay}
+            onChangeText={(pay)=>setPay(pay)}
+            style={styles.input}
           />
           <Text style={{ fontSize: 20, color: "#4aaaa5" }}>Balance</Text>
-          <TextInput
+          <Text style={styles.input} >{balan}</Text>
+        {/* <TextInput
             keyboardType="numeric"
+            
+            value={balan}
+            onChangeText={(balan)=>setPay(balan)}
             style={{
               borderWidth: 1,
               borderColor: "#4aaaa5",
@@ -121,13 +125,13 @@ export default function ViewCart() {
               fontSize: 20,
               color: "#4aaaa5",
             }}
-          />
+          />*/}
         
       </View>
       <View style={{ flex: 1,marginVertical: 20,marginTop:5 }}>
         <View style={{  marginHorizontal: 20,marginTop:5}}>
-        <Text >{Cartitems.reduce((a, b) => a + parseInt(b.qtysold), 0)}</Text>
-        <Text>{Cartitems.reduce((a, b) => a + parseInt(b.qtysold* b.price), 0)}</Text>
+        <Text style={{fontSize:25}} >Number of Items : {Cartitems.reduce((a, b) => a + parseInt(b.qtysold), 0)}</Text>
+        <Text style={{fontSize:25}}>TOTAL : {total}</Text>
         </View>
         
         <TouchableOpacity
@@ -158,4 +162,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     borderRadius: 20,
   },
+  input: {
+   color: "black",
+    width:'100%',
+    marginVertical: 3,
+    borderWidth: 1,
+    borderColor: "#4aaaa5",
+    padding: 10,
+    fontSize: 20,
+    borderRadius: 15,
+  }
 });
