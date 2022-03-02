@@ -12,29 +12,35 @@ import { Dropdown } from "react-native-element-dropdown";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-
-import { UpdatQty, RemoveCart, AddItems } from "../Redux/Actions";
+import { RemoveCart, getAllClients } from "../Redux/Actions";
 import { useState } from "react";
 
 export default function ViewCart() {
   const { Cartitems } = useSelector((state) => state.cart);
-  const [qsold,setQsold]=useState(Cartitems.qtysold)
+ // const [qsold,setQsold]=useState(Cartitems.qtysold)
   const dispatch = useDispatch();
   const { client } = useSelector((state) => state.cltReducer);
+  const {data}=client
+  console.log(client)
   const [clt, setClt] = useState("");
   const [pay,setPay] = useState("");
   const [balan,setBalan] = useState("0");
   const total= Cartitems.reduce((a, b) => a + parseInt(b.qtysold* b.price), 0)
 
  useEffect(() => {
+   dispatch(getAllClients())
    if(!pay){
      setBalan(0)
-   }else{
+   } else if(total===0){
+    setBalan(0)
+    setPay("")
+   }
+   else{
     const res= parseInt(total)-parseInt(pay) 
     setBalan(res)
    }
    
-}, [pay,balan]);
+}, [pay,balan,total,dispatch]);
 
   return (
     <View style={{ flex: 1, marginHorizontal: 20 }}>
@@ -95,7 +101,7 @@ export default function ViewCart() {
             selectedTextStyle={{ fontSize: 20 }}
             labelField="numberph"
             valueField="id"
-            data={client}
+            data={data}
             search
             searchPlaceholder="Search..."
             placeholder="please select a Number"
