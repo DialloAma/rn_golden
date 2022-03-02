@@ -13,11 +13,12 @@ import AutocompleteInput from "react-native-autocomplete-input";
 import { Dropdown } from "react-native-element-dropdown";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { AddDeliver } from "../Redux/Actions"; 
+import { AddDeliver,getAllProduct } from "../Redux/Actions"; 
 
 
 const Delivery = () => {
   const { product } = useSelector((state) => state.prodReducer);
+  const {data} = product
   //const names = product.map((item) => item.pname);
   const { Deliv } = useSelector((state) => state.deliv);
   console.log(Deliv);
@@ -30,6 +31,7 @@ const Delivery = () => {
   const [dtdeliv,setDtdeliv]=useState(new Date())
   
   useEffect(()=>{
+    dispatch(getAllProduct())
     if(!qty || !price){
       setAmou(0)
     }else{
@@ -81,16 +83,15 @@ const Delivery = () => {
               </Picker>*/}
           <Dropdown
             style={styles.input}
-            selectedTextStyle={{fontSize:25}}
+            selectedTextStyle={{ fontSize: 25 }}
             labelField="pname"
             valueField="id"
-            data={product}
+            data={data}
             search
             searchPlaceholder="Search..."
             placeholder="please select a product"
             value={prod}
-            
-            onChange={(item) => {
+             onChange={(item) => {
               setProd(item.pname);
              
               
