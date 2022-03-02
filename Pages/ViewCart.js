@@ -17,8 +17,8 @@ import { UpdatQty, RemoveCart, AddItems } from "../Redux/Actions";
 import { useState } from "react";
 
 export default function ViewCart() {
-  const { items } = useSelector((state) => state.cart);
-  const [qsold,setQsold]=useState(items.qtysold)
+  const { Cartitems } = useSelector((state) => state.cart);
+  const [qsold,setQsold]=useState(Cartitems.qtysold)
   const dispatch = useDispatch();
   const { client } = useSelector((state) => state.cltReducer);
   const [clt, setClt] = useState("");
@@ -34,8 +34,8 @@ export default function ViewCart() {
       <View style={{ flex: 5, marginVertical: 20 }}>
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={items}
-          keyExtractor={(item) => item.id}
+          data={Cartitems}
+          keyExtractor={(item) => item._id}
           renderItem={({ item }) => {
             return (
               <View
@@ -60,7 +60,7 @@ export default function ViewCart() {
                   </Text>
                 </View>
                 <View style={{ flex: 1 }}>
-                  <TouchableOpacity onPress={() => deletCart(item.id)}>
+                  <TouchableOpacity onPress={() => deletCart(item._id)}>
                     <MaterialIcons
                       name="delete"
                       size={24}
@@ -126,8 +126,8 @@ export default function ViewCart() {
       </View>
       <View style={{ flex: 1,marginVertical: 20,marginTop:5 }}>
         <View style={{  marginHorizontal: 20,marginTop:5}}>
-        <Text >{items.reduce((a, b) => a + parseInt(b.qtysold), 0)}</Text>
-        <Text>{items.reduce((a, b) => a + parseInt(b.qtysold* b.price), 0)}</Text>
+        <Text >{Cartitems.reduce((a, b) => a + parseInt(b.qtysold), 0)}</Text>
+        <Text>{Cartitems.reduce((a, b) => a + parseInt(b.qtysold* b.price), 0)}</Text>
         </View>
         
         <TouchableOpacity

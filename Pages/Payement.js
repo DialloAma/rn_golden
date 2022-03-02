@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View,Text, StyleSheet, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { Dropdown } from "react-native-element-dropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AllClients } from '../Redux/Actions';
+import axios from "axios";
 
 const Payement = () => {
     const {client}=useSelector((state)=>state.cltReducer)
-     const [clt, setClt] = useState("")
+    console.log(client);
+     const [clt, setClt] = useState([]);
+     const dispatch = useDispatch();
+     useEffect(() => {
+       /*fetch('http://192.168.43.119:2000/Clients')
+       .then(res=>res.json())
+       .then(result=>{
+         setClt(result);
+         console.log(result)
+       })
+      async function getAllclt(){
+        const result= await axios.get('http://192.168.43.119:2000/Clients');
+        console.log(result.data);
+        setClt(result.data);
+      }
+      getAllclt();*/
+      dispatch(AllClients())
+     }, [dispatch]);
     return (
         <View style={{flex:1 }}>
         <View style={{flex:1, alignItems: "center"}}>
@@ -26,7 +45,7 @@ const Payement = () => {
               selectedTextStyle={{fontSize:25}}
               labelField="numberph"
               valueField="id"
-              data={client}
+              data={clt}
               search
               searchPlaceholder="Search..."
               placeholder="please select a Number"

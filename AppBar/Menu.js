@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 
 const Drawer = createDrawerNavigator();
 const Menu = ({navigation}) => {
-  const {items} =useSelector((state)=>state.cart)
+  const {Cartitems} =useSelector((state)=>state.cart)
   
   const Searchbar=()=>{
     return(
@@ -51,7 +51,7 @@ const Menu = ({navigation}) => {
               size={24}
               color="white"
             >
-            <Text style={{color:"red",fontSize:20}}>{items.length}</Text>
+            <Text style={{color:"red",fontSize:20}}>{Cartitems.length}</Text>
             </FontAwesome5>
             </TouchableOpacity>
           ),

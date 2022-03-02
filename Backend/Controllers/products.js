@@ -17,8 +17,17 @@ const CreateProdController= async (req,res)=>{
 }
 const listControllerProd = async(req,res)=>{
   try {
-    const listProd = await prodModel.find();
+   const {id}=req.params;
+    if (id){
+      const listProd = await prodModel.find({_id:id});
+      res.json({data:listProd})
+    }else{
+     const listProd = await prodModel.find();
     res.json({data:listProd})
+    }
+   /* const listProd = await prodModel.find();
+    res.json({data:listProd})*/
+  
   } catch (error) {
     console.log(error);
   }

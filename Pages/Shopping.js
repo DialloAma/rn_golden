@@ -1,32 +1,77 @@
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  Alert,
+  FlatList,
+  ActivityIndicator
+} from "react-native";
+import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AddItems } from "../Redux/Actions";
+import { AddItems, getAllProduct,UpdatQty } from "../Redux/Actions";
+import { useEffect } from "react";
 
-export default function Shopping({navigation}) {
-  const { product } = useSelector((state) => state.prodReducer);
-  const { items } = useSelector((state) => state.cart);
+export default function Shopping({ navigation }) {
+ 
+  const {product} = useSelector((state)=>state.prodReducer)
+  const {data} = product
+  const { Cartitems } = useSelector((state) =>state.cart);
   console.log("itemesss");
-   console.log(items);
-
+  console.log(Cartitems);
+ // const [data, setData] = useState([]);
+  const [loading ,setLoading]=useState(true)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProduct());
+    setLoading(false)
+   /* const getAlldata= async ()=>{
+      try {
+        const product = await axios.get("http://192.168.43.119:2000/Product");
+        setData(product.data);
+        setLoading(false)
+      //  console.log(product.data)
+      } catch (error) {
+        console.log(error);
+      }
+      
+    }
+    getAlldata();
+    fetch("http://192.168.43.119:2000/Product")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false)
+      }).catch((error) => console.log(error));*/
+  }, [dispatch]);
+/// console.log(data);
   return (
     <View style={{ flex: 1, backgroundColor: "#eee" }}>
       <View style={{ flex: 1 }}></View>
       <View style={{ flex: 8 }}>
-          <ScrollView>
-        {product.map((item, id) => {
-          return (
-              <Produt proddata={item} key={id} />
-          );
-        })}
-        </ScrollView>
+     
+        {loading? <ActivityIndicator size="large" color="#00ff00" />:
+       
+       ( <FlatList
+        data={data}
+        renderItem={({item}) => {
+          return(
+            <Produt itemprod={item} />
+          )
+        }}
+        keyExtractor={(item) => item._id}
+      />)
+      }
+       
+       
       </View>
       <View style={{ flex: 1 }}>
-        {items.length > 0 ? (
+        {Cartitems.length > 0 ? (
           <TouchableOpacity
             onPress={() => {
-             navigation.navigate("Cart")
-              
+              navigation.navigate("Cart");
             }}
             style={{
               alignItems: "center",
@@ -48,13 +93,22 @@ export default function Shopping({navigation}) {
   );
 }
 
-const Produt = ({ proddata }) => {
+const Produt = ({itemprod }) => {
+  const { Cartitems } = useSelector((state) =>state.cart);
+  const {pname} =Cartitems;
   const [qtysold, setQtysold] = useState();
   const dispatch = useDispatch();
-  const cartitems = (proddata,qtysold) => {
-    dispatch(AddItems(proddata,qtysold));
-    setQtysold();
+ 
+  const Addcartitems = (itemprod, qtysold) => {
+    if (!qtysold) {
+      Alert.alert("please fill up the product quantity field");
+      return;
+    }  else{
+      dispatch(AddItems(itemprod, qtysold));
+      setQtysold();
+    }
   };
+ 
   return (
     <View
       style={{
@@ -74,13 +128,13 @@ const Produt = ({ proddata }) => {
             color: "#4aaaa5",
           }}
         >
-          {proddata.pname}
+          {itemprod.pname}
         </Text>
         <Text style={{ fontSize: 15, fontWeight: "500" }}>
-          Stock: {proddata.qty}
+          Stock: {itemprod.qty}
         </Text>
         <Text style={{ fontSize: 15, fontWeight: "500" }}>
-          Price : {proddata.price}
+          Price : {itemprod.price}
         </Text>
         <View
           style={{
@@ -90,7 +144,6 @@ const Produt = ({ proddata }) => {
             marginVertical: 5,
           }}
         >
-        
           <View style={{ flexDirection: "row" }}>
             <Text
               style={{
@@ -116,7 +169,7 @@ const Produt = ({ proddata }) => {
             />
           </View>
           <TouchableOpacity
-            onPress={() => cartitems(proddata, qtysold)  }
+            onPress={() => Addcartitems(itemprod, qtysold)}
             style={{
               backgroundColor: "#4aaaa5",
               alignItems: "center",

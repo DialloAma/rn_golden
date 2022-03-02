@@ -17,20 +17,29 @@ export const AddClient=(newclt)=>{
       });
     }
 }
+
 export const AllClients=()=>{
-    return async (dispatch,state)=>{
-        await axios.get('http://192.168.43.119:2000/Clients')
-        .then(res=>{res.json()})
-        .then(data=>{
-            console.log(data)
-            dispatch({
-                type:'ALL_CLT',
-                payload: data
-            })
-        })
-           
+    return async (dispatch)=>{
         
-        .catch(err=>console.log(err));
+            fetch('http://192.168.43.119:2000/Clients')
+            .then(res=>res.json())
+            .then(result=>{
+                dispatch({
+                    type:'ALL_CLT',
+                    payload: result
+                 })
+            }).catch(err=>console.log(err))
+          /*  const result= await axios.get('http://192.168.43.119:2000/Clients')
+            console.log(result.data)
+            dispatch({
+             type:'ALL_CLT',
+             payload: result.data
+            })*/
+            
+        
+      
+        
+
     }
 }
 
@@ -51,15 +60,54 @@ export const AddProdt=(newprod)=>{
         })
     }
 }
+export const getAllProduct=()=>{
+    return async(dispatch)=>{
+        fetch('http://192.168.43.119:2000/Product')
+        .then(res=>res.json())
+        .then(data=>{
+            dispatch({
+                type:'ALL_PROD',
+                payload:data
+            })
+        }).catch (error=>console.log(error))
+       
+
+    }
+}
 export const AddItems=(item,qtysold)=>{
     return{
         type:'ADD_CART',
         payload: {...item ,
-           // checkboxvalue:checkboxvalue,  
+             // checkboxvalue:checkboxvalue,  
            qtysold: qtysold
         }
     }
+   /* return async (dispatch,getState)=>{
+          // const {data} = await axios.get(`http://192.168.43.119:2000/Product/${itemid}`);
+          const {data} = await axios.get("http://192.168.43.119:2000/Product");
+           console.log(data)
+           const {cart : {Cartitems}} =getState();
+           dispatch({
+            type:'ADD_CART',
+            payload: {
+                id : data._id,
+                pname:data.pname,
+                price:data.price, 
+                qtysold: qtysold
+             }
+           })
+    }*/
 }
+export const UpdatQty=(qtysold,id)=>{
+    return{
+        type:'UPQTYSOLD',
+        payload: {
+            id,
+          qtysold:qtysold
+        }
+    }
+}
+
 export const AddDeliver=(newdel)=>{
     return{
         type:'ADD-DELIV',
@@ -70,13 +118,5 @@ export const RemoveCart=(id)=>{
     return{
           type:'REMOV',
           payload:id
-    }
-}
-export const UpdatQty=(qtysold,id)=>{
-    console.log(qtysold)
-    return{
-        type:'UPQTYSOLD',
-        payload: {id:id,
-        qtysold:qtysold}
     }
 }
