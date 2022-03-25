@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const productSchema = new Schema({
+const productSchema = new Schema(
+{
    pname:{
        type:String,
        required:true
@@ -14,9 +15,12 @@ const productSchema = new Schema({
       required:true
    },
    exdat:{
-       type: String,
-       default:Date.now
-   }
-})
+       type: Date
+   },
+},
+{
+ timestamps:true
+}
+)
  const prodModel = mongoose.model('products', productSchema);
  module.exports= prodModel;

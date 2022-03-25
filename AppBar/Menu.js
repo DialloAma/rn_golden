@@ -10,6 +10,8 @@ import CltList from "../Lists/CltList";
 import Sell from "../Pages/Sell";
 import ViewCart from "../Pages/ViewCart";
 import Shopping from "../Pages/Shopping";
+import Users from "../Pages/Users";
+import Login from "../Pages/Login";
 
 import { Header } from "react-native/Libraries/NewAppScreen";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -60,6 +62,8 @@ const Menu = ({navigation}) => {
           
         }}
       >
+        <Drawer.Screen   name="Users" component={Users} />
+        <Drawer.Screen   name="Login" component={Login} />
         <Drawer.Screen   name="Shop" component={Shopping} />
         <Drawer.Screen   name="Product" component={Product} />
         <Drawer.Screen  name="Client" component={Client} />
