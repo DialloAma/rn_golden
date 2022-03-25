@@ -1,6 +1,7 @@
 const ModelUsers = require("../Models/users")
 const bcrypt =require("bcryptjs")
 const {validationResult} =require('express-validator')
+const jwt = require('jsonwebtoken')
 const signupcontroller =(req,res)=>{
     const erors = validationResult(req);
     if(!erors.isEmpty()){
@@ -37,7 +38,9 @@ try {
        
         return res.json({message:"email and user is incorrect "}) 
     } 
-    return res.json({message:"user signed in"})
+   const token= jwt.sign({fullname:user.fullname, email:user.email, userId:user._id},'superkeycannotbeguess',
+   {expiresIn:'1h'})
+    return res.json({message:"user signed in",token})
     
     
 } catch (error) {
