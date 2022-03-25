@@ -13,7 +13,7 @@ import {
 
 
 const Users = () => {
-    const [fname, setFname] = useState("");
+    const [fullname, setFullname] = useState("");
     const [numberph, setNumberph] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -33,9 +33,9 @@ const Users = () => {
             <TextInput
               placeholder="Full Name"
               autoCapitalize="words"
-              value={fname}
-              onChangeText={(fname) => {
-                setFname(fname);
+              value={fullname}
+              onChangeText={(fullname) => {
+                setFullname(fullname);
                
               }}
               style={styles.input}

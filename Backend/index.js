@@ -6,9 +6,10 @@ const CltRouter= require("./Routes/client");
 const ProdRouter = require("./Routes/products")
 const BuyRouter = require("./Routes/buy")
 const SellRouter = require("./Routes/Sell")
+const usersRouter = require("./Routes/users")
 server.use(bodyParser.json());
 
-
+server.use(usersRouter)
 server.use(CltRouter);
 server.use(ProdRouter);
 server.use(BuyRouter);

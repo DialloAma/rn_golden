@@ -3,7 +3,7 @@ const Schema= mongoose.Schema;
 const SellSchema = new Schema({
   buyitems:[{  
         prodId:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref:'products',
         required:true
     },
