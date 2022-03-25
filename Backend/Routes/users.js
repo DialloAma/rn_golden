@@ -2,7 +2,7 @@ const express = require("express");
 const ModelUsers = require("../Models/users")
 const {body} = require("express-validator")
 const router = express.Router();
-const signupcontroller = require("../Controllers/signup")
+const {signupcontroller,signincontroller} = require("../Controllers/signup")
 router.put("/SignUp",[
     body('fullname').trim().not().isEmpty().withMessage('fullname required'),
     body('numberph').trim().not().isEmpty().withMessage('user number required'),
@@ -19,6 +19,11 @@ router.put("/SignUp",[
     body('password').trim().isLength({min:6})
 
 ],signupcontroller)
+
+router.post("/SignIn",[
+    body('email').isEmail().withMessage('invalid message'),
+    body('password').trim().isLength({min:6})
+],signincontroller)
 
 
 module.exports= router
