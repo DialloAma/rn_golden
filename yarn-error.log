@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Saliou\.yarn\releases\yarn-1.22.15.cjs add @react-native-community/datetimepicker3.5.2
+  C:\Program Files\nodejs\node.exe C:\Users\Saliou\.yarn\releases\yarn-1.22.15.cjs add jsonwebtoken
 
 PATH: 
   C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk-15.0.1\bin;C:\src\flutter\flutter\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\WINDOWS\System32\OpenSSH\;C:\Users\Saliou\AppData\Roaming\npm;C:\Users\Saliou\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Saliou\AppData\Local\Microsoft\WindowsApps;
@@ -14,17 +14,8 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@react-native-community%2fdatetimepicker3.5.2: Not found
-      at Request.params.callback [as _callback] (C:\Users\Saliou\.yarn\releases\yarn-1.22.15.cjs:78559:18)
-      at Request.self.callback (C:\Users\Saliou\.yarn\releases\yarn-1.22.15.cjs:135290:22)
-      at Request.emit (events.js:376:20)
-      at Request.<anonymous> (C:\Users\Saliou\.yarn\releases\yarn-1.22.15.cjs:136262:10)
-      at Request.emit (events.js:376:20)
-      at IncomingMessage.<anonymous> (C:\Users\Saliou\.yarn\releases\yarn-1.22.15.cjs:136184:12)
-      at Object.onceWrapper (events.js:482:28)
-      at IncomingMessage.emit (events.js:388:22)
-      at endReadableNT (internal/streams/readable.js:1336:12)
-      at processTicksAndRejections (internal/process/task_queues.js:82:21)
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:67:26)
 
 npm manifest: 
   {
@@ -37,7 +28,7 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
-      "@react-native-community/datetimepicker": "^4.0.1",
+      "@react-native-community/datetimepicker": "3.5.2",
       "@react-native-picker/picker": "2.1.0",
       "@react-navigation/drawer": "^6.1.8",
       "@react-navigation/native": "^6.0.6",
@@ -47,6 +38,7 @@ npm manifest:
       "react-dom": "17.0.1",
       "react-native": "0.64.3",
       "react-native-autocomplete-input": "^5.0.2",
+      "react-native-bouncy-checkbox": "^2.1.9",
       "react-native-datepicker": "^1.7.2",
       "react-native-element-dropdown": "^1.5.5",
       "react-native-gesture-handler": "~1.10.2",
@@ -55,7 +47,8 @@ npm manifest:
       "react-native-screens": "~3.8.0",
       "react-native-web": "0.17.1",
       "react-redux": "^7.2.6",
-      "redux": "^4.1.2"
+      "redux": "^4.1.2",
+      "redux-thunk": "^2.4.1"
     },
     "devDependencies": {
       "@babel/core": "^7.12.9"
@@ -1423,10 +1416,10 @@ Lockfile:
       sudo-prompt "^9.0.0"
       wcwidth "^1.0.1"
   
-  "@react-native-community/datetimepicker@^4.0.1":
-    version "4.0.1"
-    resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-4.0.1.tgz#f6361dc3087d458ee36bdd81fcd866df6bb906ab"
-    integrity sha512-lJURO1rhbmUCviYja2TcOxt14qc2w/5B9J+a7eZPG+9RF+1JEaWAGq3jdxWzLcimLdn+FWE8oQuveXZuuzO91Q==
+  "@react-native-community/datetimepicker@3.5.2":
+    version "3.5.2"
+    resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-3.5.2.tgz#8e6feb30f2620e5abdf565d5fe74c0c04edcf6ae"
+    integrity sha512-TWRuAtr/DnrEcRewqvXMLea2oB+YF+SbtuYLHguALLxNJQLl/RFB7aTNZeF+OoH75zKFqtXECXV1/uxQUpA+sg==
     dependencies:
       invariant "^2.2.4"
   
@@ -1777,6 +1770,13 @@ Lockfile:
     version "2.1.2"
     resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
     integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+  
+  axios@^0.26.0:
+    version "0.26.0"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.0.tgz#9a318f1c69ec108f8cd5f3c3d390366635e13928"
+    integrity sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==
+    dependencies:
+      follow-redirects "^1.14.8"
   
   babel-core@^7.0.0-bridge.0:
     version "7.0.0-bridge.0"
@@ -2852,6 +2852,11 @@ Lockfile:
     version "0.121.0"
     resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.121.0.tgz#9f9898eaec91a9f7c323e9e992d81ab5c58e618f"
     integrity sha512-1gIBiWJNR0tKUNv8gZuk7l9rVX06OuLzY9AoGio7y/JT4V1IZErEMEq2TJS+PFcw/y0RshZ1J/27VfK1UQzYVg==
+  
+  follow-redirects@^1.14.8:
+    version "1.14.8"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.8.tgz#016996fb9a11a100566398b1c6839337d7bfa8fc"
+    integrity sha512-1x0S9UVJHsQprFcEC/qnNzBLcIxsjAV905f/UkQxbclCsoTWlacCNOpQa/anodLl2uaEKFhfWOvM2Qg77+15zA==
   
   fontfaceobserver@^2.1.0:
     version "2.1.0"
@@ -4671,6 +4676,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-native-autocomplete-input/-/react-native-autocomplete-input-5.0.2.tgz#82556823b534dd1a9aabe222fda8579b3a14d011"
     integrity sha512-CL20a5Rg/jsiuavlG6cm8MRFyH1nICXFrvtlVMrJ3IKUa6AW/Ge4QqCFa7AjZKzEus1uDeMzcHC+bOhcgSudUQ==
   
+  react-native-bouncy-checkbox@^2.1.9:
+    version "2.1.9"
+    resolved "https://registry.yarnpkg.com/react-native-bouncy-checkbox/-/react-native-bouncy-checkbox-2.1.9.tgz#b15db336e3c76d3c2dcb8fb9ba3a98cbf083a7d8"
+    integrity sha512-XPdGLS7/QcfRH7J7dngvh0xzm2o+5V48TP4OJGXPjMPWH7grdXZS3PKOYVTErlZHCbbdm0gE+Iw7aXVSNQnIQQ==
+  
   react-native-codegen@^0.0.6:
     version "0.0.6"
     resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.6.tgz#b3173faa879cf71bfade8d030f9c4698388f6909"
@@ -4830,6 +4840,11 @@ Lockfile:
     integrity sha1-hSBLVNuoLVdC4oyWdW70OvUOM4Q=
     dependencies:
       resolve "^1.1.6"
+  
+  redux-thunk@^2.4.1:
+    version "2.4.1"
+    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
+    integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
   
   redux@^4.0.0, redux@^4.1.2:
     version "4.1.2"
