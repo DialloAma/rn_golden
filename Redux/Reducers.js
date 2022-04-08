@@ -91,6 +91,10 @@ export const DeliverReducer=(state={Deliv:[]},action)=>{
              return{
                  ...state, sold:[...state.sold,action.payload]
              }
+         case 'ALL_SOLD':
+             return{
+                 ...state, sold:action.payload
+             }    
            
 
              default:

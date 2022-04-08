@@ -1,4 +1,5 @@
 import axios from "axios";
+import { get } from "react-native/Libraries/Utilities/PixelRatio";
 export const AddClient=(newclt)=>{
     return async (dispatch)=>{
       await axios.post('http://192.168.43.119:2000/Clients', newclt)
@@ -113,8 +114,16 @@ export const sell =(solde)=>{
 
 }
 const getAllSold=()=>{
-    return (dispatch)=>{
-        
+    return async(dispatch)=>{
+    try {
+        const data = await axios.get('http://192.168.43.119:2000/Sold')
+        dispatch({
+            type: 'ALL_SOLD',
+            payload:data
+        })
+    } catch (error) {
+        console.log(error)
+    }
     }
 }
 export const RemoveCart=(id)=>{
