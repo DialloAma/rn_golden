@@ -23,7 +23,7 @@ export default function ViewCart() {
   const { client } = useSelector((state) => state.cltReducer);
   const {sold}= useSelector((state)=>state.sell)
   const {data}=client
-  console.log(sold)
+  console.log("sold out" +sold)
   const [numberph, setNumberph] = useState("");
   const [paid,setPaid] = useState("");
   const [balan,setBalan] = useState("0");
@@ -46,7 +46,7 @@ export default function ViewCart() {
 }, [paid,balan,amount,dispatch]);
 
 const checkout=()=>{
- dispatch(sell({buyitems:Cartitems,numberph,amount,paid,balan,dat}))
+ dispatch(sell({...Cartitems, buyitems:Cartitems,numberph,amount,paid,balan,dat}))
  Alert.alert( "has been added successfully");
  dispatch(ClearCart())
  setBalan("")
@@ -117,7 +117,7 @@ const checkout=()=>{
             placeholder="please select a Number"
             value={numberph}
             onChange={(item) => {
-              setNumberph(item.value);
+              setNumberph(item.numberph);
             }}
           ></Dropdown>
           <Text style={{ fontSize: 20, color: "#4aaaa5" }}>Payed</Text>

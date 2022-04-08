@@ -98,6 +98,7 @@ export const sell =(solde)=>{
     return async (dispatch)=>{
         try {
             const data = await axios.post('http://192.168.43.119:2000/sell',solde)
+           // console.log(data)
             dispatch({
                 type:'ADD_SOLD',
                 payload:data
@@ -110,6 +111,11 @@ export const sell =(solde)=>{
 
     }
 
+}
+const getAllSold=()=>{
+    return (dispatch)=>{
+        
+    }
 }
 export const RemoveCart=(id)=>{
     return{
