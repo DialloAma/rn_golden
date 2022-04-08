@@ -66,17 +66,71 @@ export const AddItems=(item,qtysold)=>{
     }
  
 }
-
-
-export const AddDeliver=(newdel)=>{
+export const ClearCart=()=>{
     return{
-        type:'ADD-DELIV',
-        payload: newdel
+        type:'CLEAR',
     }
+}
+
+
+export const AddDeliver=(pname,qty,price,amou,dat)=>{
+    return async(dispatch)=>{
+        try {
+         /*   const {data}= await axios.get(`http://192.168.43.119:2000/Product/${prodId}`);
+          const addqty = data.qty+qty
+          dispatch({
+              type:'Update_qty',
+              payload:addqty
+          })*/
+
+        const buy = await axios.post('http://192.168.43.119:2000/buy',{pname,qty,price,amou,dat})
+          dispatch({
+              type:"Add_deliver",
+              payload:buy
+          }) 
+        } catch (error) {
+             console.log(error)
+        }
+        
+    }
+}
+export const sell =(solde)=>{
+    return async (dispatch)=>{
+        try {
+            const data = await axios.post('http://192.168.43.119:2000/sell',solde)
+            dispatch({
+                type:'ADD_SOLD',
+                payload:data
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+        
+
+    }
+
 }
 export const RemoveCart=(id)=>{
     return{
           type:'REMOV',
           payload:id
     }
+}
+export const SignUp=(fullname,numberph,email,password)=>{
+    return async(dispatch)=>{
+         try {
+             const {data}= await axios.put('http://192.168.43.119:2000/SignUp',{
+                 fullname,numberph,email,password
+             })
+             dispatch({
+                 type:'SignUp User',
+                 payload:data
+             })
+         } catch (error) {
+             console.log(error)
+             
+         }
+    }
+
 }

@@ -7,12 +7,13 @@ import {
   StyleSheet,
   ScrollView,
   FlatList,
+  Alert,
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { RemoveCart, getAllClients } from "../Redux/Actions";
+import { RemoveCart, getAllClients,sell,ClearCart } from "../Redux/Actions";
 import { useState } from "react";
 
 export default function ViewCart() {
@@ -20,27 +21,36 @@ export default function ViewCart() {
  // const [qsold,setQsold]=useState(Cartitems.qtysold)
   const dispatch = useDispatch();
   const { client } = useSelector((state) => state.cltReducer);
+  const {sold}= useSelector((state)=>state.sell)
   const {data}=client
-  console.log(client)
-  const [clt, setClt] = useState("");
-  const [pay,setPay] = useState("");
+  console.log(sold)
+  const [numberph, setNumberph] = useState("");
+  const [paid,setPaid] = useState("");
   const [balan,setBalan] = useState("0");
-  const total= Cartitems.reduce((a, b) => a + parseInt(b.qtysold* b.price), 0)
+  const [dat,setDat] = useState(new Date());
+  const amount= Cartitems.reduce((a, b) => a + parseInt(b.qtysold* b.price), 0)
 
  useEffect(() => {
    dispatch(getAllClients())
-   if(!pay){
+   if(!paid){
      setBalan(0)
-   } else if(total===0){
+   } else if(amount===0){
     setBalan(0)
-    setPay("")
+    setPaid("")
    }
    else{
-    const res= parseInt(total)-parseInt(pay) 
+    const res= parseInt(amount)-parseInt(paid) 
     setBalan(res)
    }
    
-}, [pay,balan,total,dispatch]);
+}, [paid,balan,amount,dispatch]);
+
+const checkout=()=>{
+ dispatch(sell({buyitems:Cartitems,numberph,amount,paid,balan,dat}))
+ Alert.alert( "has been added successfully");
+ dispatch(ClearCart())
+ setBalan("")
+}
 
   return (
     <View style={{ flex: 1, marginHorizontal: 20 }}>
@@ -100,21 +110,21 @@ export default function ViewCart() {
            style={styles.input}
             selectedTextStyle={{ fontSize: 20 }}
             labelField="numberph"
-            valueField="id"
+            valueField="_id"
             data={data}
             search
             searchPlaceholder="Search..."
             placeholder="please select a Number"
-            value={clt}
+            value={numberph}
             onChange={(item) => {
-              setClt(item.value);
+              setNumberph(item.value);
             }}
           ></Dropdown>
           <Text style={{ fontSize: 20, color: "#4aaaa5" }}>Payed</Text>
           <TextInput
             keyboardType="numeric"
-            value={pay}
-            onChangeText={(pay)=>setPay(pay)}
+            value={paid}
+            onChangeText={(paid)=>setPaid(paid)}
             style={styles.input}
           />
           <Text style={{ fontSize: 20, color: "#4aaaa5" }}>Balance</Text>
@@ -137,7 +147,7 @@ export default function ViewCart() {
       <View style={{ flex: 1,marginVertical: 20,marginTop:5 }}>
         <View style={{  marginHorizontal: 20,marginTop:5}}>
         <Text style={{fontSize:25}} >Number of Items : {Cartitems.reduce((a, b) => a + parseInt(b.qtysold), 0)}</Text>
-        <Text style={{fontSize:25}}>TOTAL : {total}</Text>
+        <Text style={{fontSize:25}}>TOTAL : {amount}</Text>
         </View>
         
         <TouchableOpacity
@@ -148,6 +158,7 @@ export default function ViewCart() {
             marginVertical: 20,
             marginHorizontal: 20,
           }}
+          onPress={checkout}
         >
           <Text style={{ color: "white", fontSize: 20 }}>Check Out</Text>
         </TouchableOpacity>

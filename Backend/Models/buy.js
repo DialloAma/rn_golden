@@ -18,10 +18,13 @@ const BuySchema= new Schema({
         type:Number,
         required:true
     },
-    datexpi:{
+    amou:{
+      type:Number   
+    },
+   /* exdat:{
         type:String,
         required:true
-    },
+    },*/
     dat:{
         type:String,
         default:new Date()

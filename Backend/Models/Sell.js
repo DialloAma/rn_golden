@@ -2,16 +2,14 @@ const mongoose = require("mongoose");
 const Schema= mongoose.Schema;
 const SellSchema = new Schema({
   buyitems:[{  
-        prodId:{
-        type: Schema.Types.ObjectId,
-        ref:'products',
-        required:true
+        _id:{
+        type: String
     },
     pname:{
         type:String,
         required:true
     },
-    qty:{
+    qtysold:{
         type:Number,
         required:true
       },
@@ -20,11 +18,14 @@ const SellSchema = new Schema({
           required:true
       },
     }],
-     cltId:{
+    /* cltId:{
           type: mongoose.Schema.Types.ObjectId,
           ref:'clients',
           required:true
-      },
+      },*/
+      numberph: {
+        type:Number, 
+        require:true},
       amount:{
           type:Number,
           required:true
@@ -33,7 +34,7 @@ const SellSchema = new Schema({
           type:Number,
           required:true
       },
-      balance:{
+      balan:{
          type:Number,
          required:true
       },

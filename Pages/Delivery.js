@@ -19,16 +19,13 @@ import { AddDeliver,getAllProduct } from "../Redux/Actions";
 const Delivery = () => {
   const { product } = useSelector((state) => state.prodReducer);
   const {data} = product
-  //const names = product.map((item) => item.pname);
   const { Deliv } = useSelector((state) => state.deliv);
-  console.log(Deliv);
   const dispatch=useDispatch();
-  console.log(product);
-  const [prod, setProd] = useState("");
+  const [pname, setPname] = useState("");
   const [qty, setQty] = useState("");
   const [price, setPrice] = useState("");
   const [amou, setAmou] = useState(0);
-  const [dtdeliv,setDtdeliv]=useState(new Date())
+  const [dat,setDat]=useState(new Date())
   
   useEffect(()=>{
     dispatch(getAllProduct())
@@ -49,9 +46,9 @@ const Delivery = () => {
     } else if (!price) {
       Alert.alert("please fill up the product price field");
     }else{
-      dispatch(AddDeliver({prod,qty,price,amou,dtdeliv}))
-      Alert.alert(`${prod} has been added successfully`);
-      setProd("");
+      dispatch(AddDeliver(pname,+qty,price,amou,dat))
+      Alert.alert(`${pname} has been added successfully`);
+      setPname("");
       setQty("");
       setPrice("");
       setAmou("");
@@ -85,14 +82,14 @@ const Delivery = () => {
             style={styles.input}
             selectedTextStyle={{ fontSize: 25 }}
             labelField="pname"
-            valueField="id"
+            valueField="_id"
             data={data}
             search
             searchPlaceholder="Search..."
             placeholder="please select a product"
-            value={prod}
+            value={pname}
              onChange={(item) => {
-              setProd(item.pname);
+              setPname(item.pname);
              
               
             }}
@@ -123,7 +120,7 @@ const Delivery = () => {
             Amount
           </Text>
           <Text style={styles.input}>{amou}</Text>
-          <TextInput value={dtdeliv} onChangeText={(text)=>setDtdeliv(text)}  />
+          <TextInput value={dat} onChangeText={(text)=>setDat(text)}  />
         </View>
         <View style={{marginHorizontal:20}}>
           <TouchableOpacity activeOpacity={0.5} style={styles.btn} onPress={Add} >

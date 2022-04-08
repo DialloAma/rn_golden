@@ -9,14 +9,28 @@ import {
   Alert,
   KeyboardAvoidingView,
 } from "react-native";
-
-
+import { useDispatch } from 'react-redux';
+import { SignUp } from '../Redux/Actions';
 
 const Users = () => {
     const [fullname, setFullname] = useState("");
     const [numberph, setNumberph] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const dispatch =useDispatch()
+    const Register =()=>{
+      if(!fullname || !numberph || !email || !password ){
+        Alert.alert("please fill up the field") 
+        return
+      }else{
+        dispatch(SignUp(fullname,numberph,email,password))
+        Alert.alert("Created succeful")
+        setFullname("");
+        setNumberph("");
+        setEmail("");
+        setPassword(""); 
+      }
+    }
     return (
         <View style={{flex:1 }}>
         <View style={{flex:1.5, alignItems: "center"}}>
@@ -80,7 +94,7 @@ const Users = () => {
             <TouchableOpacity
               activeOpacity={0.5}
               style={styles.btn}
-              
+              onPress={Register}
             >
               <Text style={{ fontSize: 30, color: "white", fontWeight: "bold" }}>
                 Valider

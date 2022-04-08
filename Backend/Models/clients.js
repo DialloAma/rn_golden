@@ -5,7 +5,8 @@ const clientSchema = new Schema({
          type:String, 
          require:true},
     numberph: {
-         type:Number, 
+         type:Number,
+         unique:true, 
          require:true},
     adress: { 
         type:String, 

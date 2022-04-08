@@ -19,6 +19,11 @@ export const ProdReducer=(state={product:[]},action)=>{
             return{
                 ...state, product:[...state.product,action.payload]
             }
+        case 'Update_qty':
+            return{
+                ...state,
+                qty:action.payload
+            }    
         case 'ALL_PROD':
             return{
                 ...state,product:action.payload
@@ -29,7 +34,7 @@ export const ProdReducer=(state={product:[]},action)=>{
 }
 export const DeliverReducer=(state={Deliv:[]},action)=>{
     switch(action.type){
-           case 'ADD-DELIV':
+           case "Add_deliver":
                return{
                    ...state, Deliv:[...state.Deliv,action.payload]
                }
@@ -70,9 +75,40 @@ export const DeliverReducer=(state={Deliv:[]},action)=>{
                 return{
                     ...state, Cartitems: state.Cartitems.filter((item)=>item._id !== action.payload) 
                 }
-             
+            case 'CLEAR':
+                    return{
+                        Cartitems:[]
+                    } 
          default:
              return state;
 
      }
+ }
+ 
+ export const SellReducer=(state={sold:[]},action)=>{
+     switch(action.type){
+         case 'ADD_SOLD':
+             return{
+                 ...state, sold:[...state.sold,action.payload]
+             }
+           
+
+             default:
+                 return state;
+     }
+
+ }
+ export const UserReducer=(state={UserInfo:[]},action)=>{
+     switch(action.type){
+         case 'SignUp User':
+         return{
+             ...state, UserInfo:[...state.UserInfo,action.payload]
+         }
+
+
+
+        default:
+            return state;
+     }
+
  }

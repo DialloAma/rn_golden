@@ -2,10 +2,12 @@ const ModelBuy = require("../Models/buy");
 const prodModel = require("../Models/products")
 
 const CreateBuyController=async(req,res)=>{
-    const {prodId,pname,qty,price,datexpi,dat}=req.body;
+    
     try {
-        const buy = new ModelBuy({prodId,pname,qty,price,datexpi,dat});
+        const {prodId,pname,qty,price,dat}=req.body;
+        const buy = new ModelBuy({prodId,pname,qty,price,dat});
         const prod = await prodModel.findOne({pname});
+        console.log(prod)
         if(!prod){
             res.json({message:"Not found"})
         }
@@ -13,15 +15,35 @@ const CreateBuyController=async(req,res)=>{
             if(buyprod){
                 const addqty = prod.qty + qty;
                 prodModel.findOneAndUpdate({pname},
-                    {$set:{qty: addqty,
-                    price: price,
-                exdat: datexpi}},
+                    {$set:{qty: +addqty,price}},
+                  
                     {new:true},
                     (err)=>{
                         if(err){
-                            res.json({message:"Not find"})
+                            res.json({err:"Not updated"})
                         }
-                    })
+                    }
+                    )
+                   /* prodModel.findOneAndUpdate({pname},
+                        
+                        {$set:{ price}},
+                       
+                        {new:true},
+                        (err)=>{
+                            if(err){
+                                res.json({err:"Not updated"})
+                            }
+                        }
+                        )
+                        prodModel.findOneAndUpdate({pname},
+                           {$set:{exdat:datexpi}},
+                            {new:true},
+                            (err)=>{
+                                if(err){
+                                    res.json({err:"Not updated"})
+                                }
+                            }
+                            ) */ 
                     res.json({message:"added successfuly",data:buyprod})
             }
            

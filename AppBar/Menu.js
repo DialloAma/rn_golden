@@ -62,9 +62,10 @@ const Menu = ({navigation}) => {
           
         }}
       >
+         <Drawer.Screen   name="Shop" component={Shopping} />
         <Drawer.Screen   name="Users" component={Users} />
         <Drawer.Screen   name="Login" component={Login} />
-        <Drawer.Screen   name="Shop" component={Shopping} />
+       
         <Drawer.Screen   name="Product" component={Product} />
         <Drawer.Screen  name="Client" component={Client} />
         <Drawer.Screen name="Payement" component={Payement} />
