@@ -39,56 +39,11 @@ const CreateSellController=async(req,res)=>{
    } catch (error) {
     
    }
+}
+const getAllSold= async(req,res)=>{
+    const AllSold = await ModelSell.find();
+    res.json({data:AllSold})
 
-
-
-
-   /* try {
-        const sell = new ModelSell({buyitems,numberph,amount,paid,balan,dat});
-        const fil= buyitems.map((item)=>item.pname)
-       const prod = await prodModel.findOne({fil})
-       console.log( "all product" +prod)
-    
-      console.log(fil)
-       
-           const clt = await CltModel.findOne({numberph})
-        if(!prod ){
-            res.json({message:"prodId Not found"})
-        }
-
-        if (!clt){
-            res.json({message:"client Not found"}) 
-        }
-            const sellprod = await sell.save();
-            if(sellprod){
-                const rduceqty = prod.qty - buyitems.qtysold;
-                const cltbalance = clt.balance + balan;
-          
-                prodModel.findOneAndUpdate({buyitems},
-                    {$set:{qty: +rduceqty}},
-                    {new:true},
-                    (err)=>{
-                        if(err){
-                            res.json({message:"Not Updated"})
-                        }
-                    }
-                    );
-                    CltModel.findOneAndUpdate({numberph},
-                        {$set:{balance: +cltbalance}},
-                        {new:true},
-                        (err)=>{
-                            if(err){
-                                res.json({message:"Not Updated"})
-                            }
-                        })
-                    res.json({message:"purchased successfuly",data:sellprod})
-            }
-           
-        
-        
-    } catch (error) {
-        console.log(error)
-    }*/
 }
 
-module.exports= CreateSellController
+module.exports= {CreateSellController,getAllSold}
