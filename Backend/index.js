@@ -8,6 +8,7 @@ const ProdRouter = require("./Routes/products")
 const BuyRouter = require("./Routes/buy")
 const SellRouter = require("./Routes/Sell")
 const usersRouter = require("./Routes/users")
+const PaidRouter = require("./Routes/Payement")
 server.use(bodyParser.json());
 
 server.use(usersRouter)
@@ -15,6 +16,7 @@ server.use(CltRouter);
 server.use(ProdRouter);
 server.use(BuyRouter);
 server.use(SellRouter)
+server.use(PaidRouter)
 
 
 //connect my app to mongodb

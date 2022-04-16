@@ -15,7 +15,7 @@ const productSchema = new Schema(
       required:true
    },
    exdat:{
-       type: Date
+       type: String,
    },
 },
 {

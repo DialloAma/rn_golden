@@ -19,8 +19,8 @@ export default function Shopping({ navigation }) {
   const {product} = useSelector((state)=>state.prodReducer)
   const {data} = product
   const { Cartitems } = useSelector((state) =>state.cart);
-  console.log("itemesss");
-  console.log(Cartitems);
+ // console.log("itemesss");
+ // console.log(Cartitems);
  // const [data, setData] = useState([]);
   const [loading ,setLoading]=useState(true)
   const dispatch = useDispatch();
@@ -97,9 +97,14 @@ const Produt = ({itemprod }) => {
   const { Cartitems } = useSelector((state) =>state.cart);
   const {pname} =Cartitems;
   const [qtysold, setQtysold] = useState();
+  const [dte, setDte] = useState(new Date());
   const dispatch = useDispatch();
+  
+ // console.log(dte)
  
   const Addcartitems = (itemprod, qtysold) => {
+    console.log(itemprod.exdat)
+    
     if (!qtysold) {
       Alert.alert("please fill up the product quantity field");
       return;
@@ -154,39 +159,52 @@ const Produt = ({itemprod }) => {
             >
               Quantity :
             </Text>
-            <TextInput
-              value={qtysold}
-              onChangeText={(text) => setQtysold(text)}
-              keyboardType="numeric"
-              style={{
-                borderWidth: 1,
-                borderColor: "#4aaaa5",
-                padding: 5,
-                fontSize: 20,
-                color: "#4aaaa5",
-                width: 100,
-              }}
-            />
+                 
+                <TextInput
+                value={qtysold}
+                onChangeText={(text) => setQtysold(text)}
+                keyboardType="numeric"
+                style={{
+                  borderWidth: 1,
+                  borderColor: "#4aaaa5",
+                  padding: 5,
+                  fontSize: 20,
+                  color: "#4aaaa5",
+                  width: 100,
+                }}
+              />
+                
+            
           </View>
-          <TouchableOpacity
-            onPress={() => Addcartitems(itemprod, qtysold)}
-            style={{
-              backgroundColor: "#4aaaa5",
-              alignItems: "center",
-              padding: 10,
-              marginHorizontal: 15,
-            }}
-          >
-            <Text
-              style={{
-                color: "white",
-                fontSize: 15,
-                fontWeight: "bold",
-              }}
-            >
-              ADD
-            </Text>
-          </TouchableOpacity>
+           {  qtysold > itemprod.qty  ? (<Text></Text> )  :(
+
+                <TouchableOpacity
+                  onPress={() => Addcartitems(itemprod, qtysold)}
+                  style={{
+                    backgroundColor: "#4aaaa5",
+                    alignItems: "center",
+                    padding: 10,
+                    marginHorizontal: 15,
+                  }}
+                 // disabled={dte > itemprod.exdat ? true : false}
+                  >
+                  
+                  <Text
+                    style={{
+                      color: "white",
+                      fontSize: 15,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    ADD
+                  </Text>
+                  </TouchableOpacity>
+                  
+           )
+
+           }
+          
+        
         </View>
       </View>
     </View>

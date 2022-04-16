@@ -4,7 +4,7 @@ const isAuth = require("../Middleweare/isAuth")
 const {CreateCltController,listClients,updateControllerClt}= require("../Controllers/clients")
 
 
-router.post('/Clients',isAuth,CreateCltController);
+router.post('/Clients',CreateCltController);
 router.get('/Clients',listClients);
 router.put('/Clients',updateControllerClt);
 
