@@ -149,3 +149,18 @@ export const SignUp=(fullname,numberph,email,password)=>{
     }
 
 }
+
+export const AddPayements=(numberph,amount,dte)=>{
+    return async(dispatch)=>{
+        try {
+            const data = await axios.post('http://192.168.43.119:2000/Payement',{numberph,amount,dte})
+            dispatch({
+                type: 'Paid',
+                payload:data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}

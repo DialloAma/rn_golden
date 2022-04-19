@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
-import { CltReducer, ProdReducer,CartReducer,DeliverReducer,UserReducer,SellReducer } from "./Reducers";
+import { CltReducer, ProdReducer,CartReducer,DeliverReducer,UserReducer,SellReducer,PaidReducer } from "./Reducers";
 
 const Root=combineReducers({
    cltReducer: CltReducer,
@@ -9,6 +9,7 @@ const Root=combineReducers({
    deliv: DeliverReducer,
    sell:SellReducer,
    user:UserReducer,
+   paid : PaidReducer
 
 })
 

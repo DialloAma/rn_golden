@@ -36,7 +36,7 @@ const Delivery = () => {
       setAmou(res)
     }
  
-  },[qty,price])
+  },[dispatch,qty,price])
   const Add=()=>{
    /* if (!prod) {
       Alert.alert("please fill up the product name field");

@@ -1,18 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import {View,Text, StyleSheet, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import {View,Text, StyleSheet, TextInput, TouchableOpacity, ScrollView,Alert} from 'react-native';
 import { Dropdown } from "react-native-element-dropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClients } from '../Redux/Actions';
+import { getAllClients,AddPayements } from '../Redux/Actions';
 import axios from "axios";
+
+
 
 const Payement = () => {
     const {client}=useSelector((state)=>state.cltReducer)
     const {data}=client
-     const [clt, setClt] = useState([]);
+    console.log(data)
+     const [numberph, setNumberph] = useState("Veuillez selectionner le numero du client");
+     const [amount,setAmount]=useState();
+    // const [dte,setDte]=useState(new Date());
+    const dte = new Date()
+     console.log(dte)
      const dispatch = useDispatch();
      useEffect(() => {
       dispatch(getAllClients())
      }, [dispatch]);
+     const AddPayement=()=>{
+       if(!amount){
+        Alert.alert('Veuillez saisir le monttant du versement')
+       }else{
+         dispatch(AddPayements(numberph,+amount,dte))
+         Alert.alert('Versement effectuer avec succè')
+         setNumberph("");
+         setAmount("");
+        // setDte(new Date())
+         
+       }
+     }
     return (
         <View style={{flex:1 }}>
         <View style={{flex:1, alignItems: "center"}}>
@@ -32,26 +51,16 @@ const Payement = () => {
       
               selectedTextStyle={{fontSize:25}}
               labelField="numberph"
-              valueField="id"
+              valueField="_id"
               data={data}
               search
               searchPlaceholder="Search..."
-              placeholder="please select a Number"
-              value={clt}
+             // placeholder="please select a Number"
+              value={numberph}
               onChange={(item) => {
-                setClt(item.value);
+                setNumberph(item.numberph);
                 console.log(item)
               }}
-            />
-            <Text style={{ fontSize: 20, color: "#4aaaa5" }}>
-              Payed
-            </Text>
-            <TextInput
-              placeholder="Quantity"
-              keyboardType="numeric"
-              style={styles.input}
-            //  value={}
-             // onChangeText={}
             />
             <Text style={{  fontSize: 20, color: "#4aaaa5" }}>
               Amount
@@ -59,14 +68,14 @@ const Payement = () => {
             <TextInput
               placeholder="Amount"
               keyboardType="numeric"
-             caretHidden={true}
               style={styles.input}
-            //  value={}
-             // onChangeText={}
+             value={amount}
+              onChangeText={(amount)=>setAmount(amount)}
              />
           </View>
+         
           <View style={{marginHorizontal:20}}>
-            <TouchableOpacity activeOpacity={0.5} style={styles.btn} >
+            <TouchableOpacity activeOpacity={0.5} style={styles.btn} onPress={AddPayement}>
               <Text style={{ fontSize: 30, color: "white", fontWeight: "bold" }}>
                 Valider
               </Text>

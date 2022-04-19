@@ -8,9 +8,13 @@ const CltModel=require("../Models/clients")
           if(!cltup){
             res.json({message:"Not found"})
           }
-          const balance = cltup.balance - amount;
-          console.log(balance)
-          CltModel.findOneAndUpdate({numberph},{$set:{balance: +balance}},{new:true},(err)=>{
+          if(cltup.balance < amount){
+            res.json({message:"le montant saisi est supérieur au balance du client"})
+            return
+          }
+          const balan = cltup.balance - amount;
+          console.log(balan)
+          CltModel.findOneAndUpdate({numberph},{$set:{balance: +balan}},{new:true},(err)=>{
             if(err){
               res.json("not updated")
             }

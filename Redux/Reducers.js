@@ -116,3 +116,16 @@ export const DeliverReducer=(state={Deliv:[]},action)=>{
      }
 
  }
+
+ export const PaidReducer=(state={Paid:[]},action)=>{
+     switch(action.type){
+         case 'Paid':
+             return{
+                 ...state, Paid:[...state.Paid,action.payload]
+             }
+
+        default:
+            return state;
+
+     }
+ }
