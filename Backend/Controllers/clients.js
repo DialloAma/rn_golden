@@ -1,8 +1,14 @@
 const CltModel = require("../Models/clients");
+const {validationResult} = require("express-validator")
+
 
 const CreateCltController= async (req,res)=>{
     const {fname,numberph,adress,balance}= req.body;
+    const errors = validationResult(req)
     try {
+        if (!errors.isEmpty()){
+            return res.json({message:errors.array()[0]})
+        }
         const clts = new CltModel({ fname,numberph,adress,balance});
         const client = await clts.save();
          
